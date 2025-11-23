@@ -8,13 +8,15 @@
 body {
     font-family: Arial, sans-serif;
     background: #eef3f8;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ⭐ TOP BAR */
-.topbar, .mobile-header {
+/* TOP BAR / MOBILE HEADER */
+.topbar {
     width: 100%;
     background: #fff;
-    padding: 14px 15px;
+    padding: 14px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +26,7 @@ body {
     z-index: 1500;
 }
 
-.logo, .logo-text {
+.logo {
     font-size: 20px;
     font-weight: 700;
     color: #0073ff;
@@ -33,90 +35,145 @@ body {
 .menu-icon {
     font-size: 26px;
     cursor: pointer;
-    font-weight: bold;
+    background: transparent;
+    border: none;
 }
 
-/* ⭐ SIDE MENU */
+/* OVERLAY (when menu open) */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
+    z-index: 1400;
+}
+
+/* SIDE MENU */
 .side-menu {
     position: fixed;
     top: 0;
-    right: -260px;
-    width: 260px;
+    right: -280px; /* hidden by default */
+    width: 280px;
     height: 100%;
     background: #ffffff;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.15);
-    transition: 0.3s;
-    padding: 20px;
-    z-index: 2000;
+    box-shadow: -2px 0 14px rgba(0,0,0,0.12);
+    transition: right 0.28s ease;
+    z-index: 1500;
+    padding: 18px;
+    overflow-y: auto;
 }
 
+.side-menu.open {
+    right: 0;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu top */
 .menu-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .menu-title {
     font-size: 18px;
     font-weight: 700;
+    color: #0073ff;
 }
 
 .close-btn {
-    font-size: 22px;
+    font-size: 20px;
+    background: transparent;
+    border: none;
     cursor: pointer;
+    color: #333;
 }
 
-.side-menu a {
-    display: block;
-    font-size: 18px;
-    padding: 10px 0;
-    color: #0073ff;
+/* SIDE MENU LIST STYLE */
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 6px;
+}
+
+.side-menu ul li {
+    margin: 10px 0;
+}
+
+.side-menu ul li a {
     text-decoration: none;
+    font-size: 17px;
+    color: #0073ff;
     font-weight: 600;
+    display: block;
 }
 
-/* ⭐ HEADER */
+/* HEADER */
 .header {
     background: #0d6efd;
     color: white;
     text-align: center;
-    padding: 20px 10px;
+    padding: 22px 12px;
 }
 
 .header h1 {
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 6px;
 }
 
 .header p {
-    opacity: 0.9;
+    font-size: 13px;
+    opacity: 0.95;
 }
 
-/* ⭐ MAIN BUTTONS */
+/* MAIN BOX */
 .main-box {
-    padding: 20px;
+    padding: 22px 16px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 18px;
 }
 
+/* CARD BUTTONS */
 .card, .chapter-card {
+    width: 90%;
+    max-width: 420px;
     background: white;
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 16px;
     text-align: center;
+    border-radius: 12px;
     font-size: 18px;
-    color: #0073ff;
     text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: #0d6efd;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    transition: transform 0.18s ease, background 0.18s ease;
+    display: block;
 }
 
-/* ⭐ FOOTER */
+.card:hover, .chapter-card:hover {
+    transform: translateY(-3px);
+    background: #f3f9ff;
+}
+
+/* FOOTER */
 .footer {
     text-align: center;
-    padding: 15px;
-    margin-top: 25px;
-    font-size: 14px;
+    padding: 18px;
+    margin-top: 22px;
+    font-size: 13px;
     color: #555;
+}
+
+/* Responsive tweaks */
+@media(min-width: 880px){
+    .main-box { padding: 30px; }
+    .card { width: 60%; }
 }
