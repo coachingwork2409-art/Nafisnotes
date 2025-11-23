@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,13 +10,16 @@
 
 <!-- ⭐ TOP HEADER -->
 <header class="topbar">
-    <img src="Images/Logo.png" class="site-logo" alt="Logo" />
+    <img src="logo.png" class="site-logo" alt="Logo" />
     <div class="logo-text">Salman Unique Notes</div>
     <div class="menu-icon" onclick="openMenu()">☰</div>
 </header>
 
+<!-- ⭐ OVERLAY -->
+<div id="overlay" class="overlay"></div>
+
 <!-- ⭐ SIDE MENU -->
-<aside id="sideMenu" class="side-menu">
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
     <div class="close-btn" onclick="closeMenu()">✕</div>
 
     <a href="index.html">Home</a>
@@ -37,11 +40,9 @@
 
 <!-- ⭐ MAIN CARDS -->
 <main class="main-box">
-
-    <a href="class8.html" class="glow-card">Class 8 Notes</a>
-    <a href="class9.html" class="glow-card">Class 9 Notes</a>
-    <a href="class10.html" class="glow-card">Class 10 Notes</a>
-
+    <a href="class8.html" class="glow-card">✨ Class 8 Notes</a>
+    <a href="class9.html" class="glow-card">✨ Class 9 Notes</a>
+    <a href="class10.html" class="glow-card">✨ Class 10 Notes</a>
 </main>
 
 <!-- ⭐ FOOTER -->
