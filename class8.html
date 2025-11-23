@@ -6,19 +6,24 @@
   <title>Class 8 Notes - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
+  <!-- HEADER (same as index) -->
   <header class="topbar">
-    <div class="logo">Salman Unique Notes</div>
-    <button class="menu-icon" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <img src="logo.png" class="site-logo" alt="Logo">
+    <div class="logo-text">Salman Unique Notes</div>
+    <div class="menu-icon" onclick="openMenu()">☰</div>
   </header>
 
+  <!-- OVERLAY -->
   <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
+  <!-- SIDE MENU -->
   <aside id="sideMenu" class="side-menu" aria-hidden="true">
     <div class="menu-top">
-      <span class="menu-title">Salman Unique Notes</span>
-      <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">✕</button>
+      <span class="menu-title">Menu</span>
+      <button class="close-btn" onclick="closeMenu()">✕</button>
     </div>
 
     <ul>
@@ -33,18 +38,23 @@
     </ul>
   </aside>
 
-  <header class="header">
+  <!-- PAGE HEADER -->
+  <section class="header">
     <h1>📘 Class 8 Notes</h1>
-    <p>Bihar Board — All Chapters</p>
-  </header>
+    <p>Bihar Board – All Chapters</p>
+  </section>
 
+  <!-- MAIN CONTENT -->
   <main class="main-box">
-    <a href="#" class="chapter-card">Chapter 1 — वास्तविक संख्याएँ</a>
-    <a href="#" class="chapter-card">Chapter 2 — बहुपद</a>
-    <a href="#" class="chapter-card">Chapter 3 — दो चर वाले रेखीय समीकरण</a>
-    <a href="#" class="chapter-card">Chapter 4 — त्रिभुज</a>
-    <a href="#" class="chapter-card">Chapter 5 — घन एवं घनाभ</a>
-    <a href="#" class="chapter-card">More chapters uploading soon...</a>
+
+    <a href="#" class="glow-card">✨ Chapter 1 — वास्तविक संख्याएँ</a>
+    <a href="#" class="glow-card">✨ Chapter 2 — बहुपद</a>
+    <a href="#" class="glow-card">✨ Chapter 3 — दो चर वाले रेखीय समीकरण</a>
+    <a href="#" class="glow-card">✨ Chapter 4 — त्रिभुज</a>
+    <a href="#" class="glow-card">✨ Chapter 5 — घन एवं घनाभ</a>
+
+    <a href="#" class="glow-card coming-soon">More chapters uploading soon…</a>
+
   </main>
 
   <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
