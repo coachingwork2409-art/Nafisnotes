@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="utf-8" />
@@ -6,32 +6,40 @@
   <title>Notes - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-  <header class="topbar"><div class="logo">Salman Unique Notes</div><button class="menu-icon" onclick="openMenu()">☰</button></header>
-  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
-  <aside id="sideMenu" class="side-menu" aria-hidden="true">
-    <div class="menu-top"><span class="menu-title">Salman Unique Notes</span><button class="close-btn" onclick="closeMenu()">✕</button></div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="class8.html">Class 8</a></li>
-      <li><a href="class9.html">Class 9</a></li>
-      <li><a href="class10.html">Class 10</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="test.html">Online Test</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </aside>
 
-  <header class="header"><h1>Notes</h1><p>Downloadable notes और summaries</p></header>
+<header class="topbar">
+  <img src="logo.png" class="site-logo">
+  <div class="logo-text">Salman Unique Notes</div>
+  <div class="menu-icon" onclick="openMenu()">☰</div>
+</header>
 
-  <main class="main-box">
-    <a class="chapter-card" href="#">Download Class 8 Notes (PDF)</a>
-    <a class="chapter-card" href="#">Download Class 9 Notes (PDF)</a>
-    <a class="chapter-card" href="#">Download Class 10 Notes (PDF)</a>
-  </main>
+<div id="overlay" class="overlay"></div>
 
-  <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
-  <script src="js/script.js"></script>
+<aside id="sideMenu" class="side-menu">
+  <div class="close-btn" onclick="closeMenu()">✕</div>
+  <a href="index.html">Home</a>
+  <a href="notes.html">Notes</a>
+  <a href="test.html">Online Test</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</aside>
+
+<section class="header">
+  <h1>📚 Notes</h1>
+  <p>Downloadable Study Material</p>
+</section>
+
+<main class="main-box">
+  <a class="glow-card">Class 8 Notes (Soon)</a>
+  <a class="glow-card">Class 9 Notes (Soon)</a>
+  <a class="glow-card">Class 10 Notes (Soon)</a>
+</main>
+
+<footer class="footer">© 2025 Salman Unique Notes</footer>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
