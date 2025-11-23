@@ -1,41 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- HEADER BAR -->
 <header class="topbar">
-  <img src="logo.png" class="site-logo" alt="Logo">
-  <div class="logo-text">Salman Unique Notes</div>
-  <div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="left">
+    <img src="logo.png" alt="Logo" class="site-logo" />
+  </div>
+
+  <div class="center">
+    <div class="site-title">Salman Unique Notes</div>
+  </div>
+
+  <div class="right">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+  </div>
 </header>
 
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <div class="close-btn" onclick="closeMenu()">✕</div>
-
-  <a href="index.html">Home</a>
-  <a href="class8.html">Class 8</a>
-  <a href="class9.html">Class 9</a>
-  <a href="class10.html">Class 10</a>
-  <a href="notes.html">Notes</a>
-  <a href="test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-<!-- DARK OVERLAY -->
+<!-- Overlay + Side menu -->
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-<!-- EMPTY BODY -->
-<div style="height: 350px;"></div>
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="class8.html">Class 8</a>
+    <a href="class9.html">Class 9</a>
+    <a href="class10.html">Class 10</a>
+    <a href="notes.html">Notes</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</aside>
 
-<!-- FOOTER -->
+<main class="hero">
+  <h1>सपने आपके, संकल्प हमारा</h1>
+  <p class="subtitle">नफीस सर के साथ, अब टॉपर बनने का नंबर तुम्हारा।</p>
+</main>
+
 <footer class="footer">
   © 2025 Salman Unique Notes | All Rights Reserved
 </footer>
