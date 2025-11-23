@@ -1,62 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact - Salman Unique Notes</title>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <header class="topbar">
-    <div class="logo">Salman Unique Notes</div>
-    <button class="menu-icon" onclick="openMenu()">☰</button>
-  </header>
+<header class="topbar">
+<img src="logo.png" class="site-logo">
+<div class="logo-text">Salman Unique Notes</div>
+<div class="menu-icon" onclick="openMenu()">☰</div>
+</header>
 
-  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<div id="overlay" class="overlay"></div>
 
-  <aside id="sideMenu" class="side-menu" aria-hidden="true">
-    <div class="menu-top">
-      <span class="menu-title">Salman Unique Notes</span>
-      <button class="close-btn" onclick="closeMenu()">✕</button>
-    </div>
+<aside id="sideMenu" class="side-menu">
+<div class="close-btn" onclick="closeMenu()">✕</div>
+<a href="index.html">Home</a>
+<a href="contact.html">Contact</a>
+</aside>
 
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="class8.html">Class 8</a></li>
-      <li><a href="class9.html">Class 9</a></li>
-      <li><a href="class10.html">Class 10</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="test.html">Online Test</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </aside>
+<section class="header">
+<h1>📞 Contact Us</h1>
+<p>हमसे संपर्क करें</p>
+</section>
 
-  <header class="header">
-    <h1>📘 Contact</h1>
-    <p>Reach out — हम आपकी मदद करने के लिए तैयार हैं</p>
-  </header>
+<main class="main-box">
+<a class="glow-card">Email: example@gmail.com</a>
+<a class="glow-card">WhatsApp: 00000000</a>
+</main>
 
-  <main class="main-box" style="max-width:740px; align-items:flex-start;">
-    <label style="font-weight:700;color:#333;">Your name</label>
-    <input class="input-field" placeholder="आपका नाम" />
+<footer class="footer">© 2025 Salman Unique Notes</footer>
 
-    <label style="font-weight:700;color:#333;margin-top:10px;display:block;">Email</label>
-    <input class="input-field" placeholder="example@email.com" />
+<script src="js/script.js"></script>
 
-    <label style="font-weight:700;color:#333;margin-top:10px;display:block;">Message</label>
-    <textarea class="input-field" rows="5" placeholder="अपना message यहाँ टाइप करें"></textarea>
-
-    <button class="btn" style="margin-top:10px;">Send Message</button>
-
-    <p style="color:#666;margin-top:12px;font-size:14px;">
-      NOTE: यह साइट static GitHub Pages पर hosted है — इसलिए यहाँ भेजा गया message सीधे inbox में नहीं जाएगा। संपर्क के लिए repo में दी गई email/whatsapp का उपयोग करें।
-    </p>
-  </main>
-
-  <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
