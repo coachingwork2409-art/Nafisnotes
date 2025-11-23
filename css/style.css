@@ -125,12 +125,14 @@ body {
 
 .header h1 {
     font-size: 22px;
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
 .header p {
-    font-size: 13px;
-    opacity: 0.95;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 1;
 }
 
 /* MAIN BOX */
