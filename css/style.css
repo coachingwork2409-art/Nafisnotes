@@ -100,7 +100,20 @@ body {
     background: #f5f5f5;
     box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
-
+.chapter-card {
+    display: block;
+    padding: 12px 18px;
+    margin: 10px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    text-decoration: none;
+    color: #0073ff;
+    font-weight: 600;
+}
+.chapter-card:hover {
+    background: #eef4ff;
+}
 .navbar a:hover {
     background: #e0e0e0;
 }
