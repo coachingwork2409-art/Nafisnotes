@@ -1,16 +1,16 @@
-const sideMenu = document.getElementById("sideMenu");
-const overlay = document.getElementById("overlay");
+const sideMenu = document.getElementById('sideMenu');
+const overlay = document.getElementById('overlay');
 
 function openMenu() {
-    sideMenu.classList.add("open");
-    overlay.classList.add("show");
+    sideMenu.classList.add('open');
+    overlay.classList.add('show');
 }
 
 function closeMenu() {
-    sideMenu.classList.remove("open");
-    overlay.classList.remove("show");
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('show');
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeMenu();
+document.addEventListener('keydown', function(e){
+    if(e.key === "Escape") closeMenu();
 });
