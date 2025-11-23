@@ -1,51 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Class 8 Notes - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
 <header class="topbar">
-    <img src="logo.png" class="site-logo" alt="Logo">
-    <div class="logo-text">Salman Unique Notes</div>
-    <div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
+  <div class="right"><button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button></div>
 </header>
 
-<div id="overlay" class="overlay"></div>
-
-<aside id="sideMenu" class="side-menu">
-  <div class="close-btn" onclick="closeMenu()">✕</div>
-  <a href="index.html">Home</a>
-  <a href="class8.html">Class 8</a>
-  <a href="class9.html">Class 9</a>
-  <a href="class10.html">Class 10</a>
-  <a href="notes.html">Notes</a>
-  <a href="test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="class8.html">Class 8</a>
+    <a href="class9.html">Class 9</a>
+    <a href="class10.html">Class 10</a>
+    <a href="notes.html">Notes</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </aside>
 
-<section class="header">
-  <h1>📘 Class 8 Notes</h1>
-  <p>Bihar Board – All Chapters</p>
-</section>
+<main class="page-content">
+  <section class="header-section">
+    <h2>📘 Class 8 Notes</h2>
+    <p>Bihar Board — All Chapters</p>
+  </section>
 
-<main class="main-box">
-  <a class="glow-card">✨ Chapter 1 – वास्तविक संख्याएँ</a>
-  <a class="glow-card">✨ Chapter 2 – बहुपद</a>
-  <a class="glow-card">✨ Chapter 3 – दो चर वाले रेखीय समीकरण</a>
-  <a class="glow-card">✨ Chapter 4 – त्रिभुज</a>
-  <a class="glow-card">✨ Chapter 5 – घन एवं घनाभ</a>
-  <a class="glow-card coming-soon">More chapters uploading soon…</a>
+  <section class="cards">
+    <a class="glow-card" href="#">Chapter 1 — वास्तविक संख्याएँ</a>
+    <a class="glow-card" href="#">Chapter 2 — बहुपद</a>
+    <a class="glow-card" href="#">Chapter 3 — दो चर वाले रेखीय समीकरण</a>
+    <a class="glow-card" href="#">Chapter 4 — त्रिभुज</a>
+    <a class="glow-card" href="#">Chapter 5 — घन एवं घनाभ</a>
+  </section>
 </main>
 
-<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
+<footer class="footer">
+  © 2025 Salman Unique Notes | All Rights Reserved
+</footer>
 
 <script src="js/script.js"></script>
-
 </body>
 </html>
