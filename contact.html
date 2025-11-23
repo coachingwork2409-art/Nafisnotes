@@ -1,41 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-
 <header class="topbar">
-<img src="logo.png" class="site-logo">
-<div class="logo-text">Salman Unique Notes</div>
-<div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
+  <div class="right"><button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button></div>
 </header>
 
-<div id="overlay" class="overlay"></div>
-
-<aside id="sideMenu" class="side-menu">
-<div class="close-btn" onclick="closeMenu()">✕</div>
-<a href="index.html">Home</a>
-<a href="contact.html">Contact</a>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="class8.html">Class 8</a>
+    <a href="class9.html">Class 9</a>
+    <a href="class10.html">Class 10</a>
+    <a href="notes.html">Notes</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </aside>
 
-<section class="header">
-<h1>📞 Contact Us</h1>
-<p>हमसे संपर्क करें</p>
-</section>
+<main class="page-content">
+  <section class="header-section">
+    <h2>Contact</h2>
+    <p>संदेश भेजें — हम जवाब देंगे</p>
+  </section>
 
-<main class="main-box">
-<a class="glow-card">Email: example@gmail.com</a>
-<a class="glow-card">WhatsApp: 00000000</a>
+  <section class="contact-form">
+    <form id="contactForm" onsubmit="submitContact(event)">
+      <label>नाम</label>
+      <input type="text" id="name" required />
+
+      <label>ईमेल</label>
+      <input type="email" id="email" required />
+
+      <label>Message</label>
+      <textarea id="message" rows="5" required></textarea>
+
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-details">
+      <h4>Direct Contact</h4>
+      <p>Email: <a href="mailto:your-email@nafissirchhaurahi.com">your-email@example.com</a></p>
+      <p>WhatsApp: +91-8877241912</p>
+    </div>
+  </section>
 </main>
 
-<footer class="footer">© 2025 Salman Unique Notes</footer>
-
+<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 <script src="js/script.js"></script>
-
 </body>
 </html>
