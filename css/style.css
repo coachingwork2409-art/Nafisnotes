@@ -124,3 +124,22 @@ body {
 .btn:hover {
     background: #005ecb;
 }
+/* ⭐ Responsive Mobile Navbar */
+.top-nav {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 12px 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+.top-nav::-webkit-scrollbar-thumb {
+    background: #c7d7ff;
+    border-radius: 10px;
+}
