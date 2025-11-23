@@ -10,8 +10,11 @@ body {
 .header {
   background: #1b73e8;
   color: white;
-  padding: 25px 10px;
-  margin-bottom: 30px;
+  padding: 40px 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 .header h1 {
   margin: 0;
@@ -29,19 +32,19 @@ body {
   gap: 20px;
   width: 90%;
   max-width: 400px;
-  margin: auto;
+  margin: 0 auto;
+  margin-top: 30px;
 }
-
 .card {
-  background: white;
-  padding: 18px;
-  font-size: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: #ffffff;
+  padding: 22px;
+  font-size: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   text-decoration: none;
   color: #1b73e8;
-  font-weight: bold;
-  transition: 0.2s;
+  font-weight: 600;
+  transition: 0.25s;
 }
 
 .card:hover {
