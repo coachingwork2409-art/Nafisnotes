@@ -1,45 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Notes - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-
 <header class="topbar">
-  <img src="logo.png" class="site-logo">
-  <div class="logo-text">Salman Unique Notes</div>
-  <div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
+  <div class="right"><button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button></div>
 </header>
 
-<div id="overlay" class="overlay"></div>
-
-<aside id="sideMenu" class="side-menu">
-  <div class="close-btn" onclick="closeMenu()">✕</div>
-  <a href="index.html">Home</a>
-  <a href="notes.html">Notes</a>
-  <a href="test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="class8.html">Class 8</a>
+    <a href="class9.html">Class 9</a>
+    <a href="class10.html">Class 10</a>
+    <a href="notes.html">Notes</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </aside>
 
-<section class="header">
-  <h1>📚 Notes</h1>
-  <p>Downloadable Study Material</p>
-</section>
+<main class="page-content">
+  <section class="header-section">
+    <h2>Notes — Class wise</h2>
+  </section>
 
-<main class="main-box">
-  <a class="glow-card">Class 8 Notes (Soon)</a>
-  <a class="glow-card">Class 9 Notes (Soon)</a>
-  <a class="glow-card">Class 10 Notes (Soon)</a>
+  <section class="cards">
+    <a class="glow-card" href="class8.html">✨ Class 8 Notes</a>
+    <a class="glow-card" href="class9.html">✨ Class 9 Notes</a>
+    <a class="glow-card" href="class10.html">✨ Class 10 Notes</a>
+  </section>
 </main>
 
-<footer class="footer">© 2025 Salman Unique Notes</footer>
-
+<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 <script src="js/script.js"></script>
-
 </body>
 </html>
