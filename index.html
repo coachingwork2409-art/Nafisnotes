@@ -2,22 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-<!-- ⭐ TOP BAR WITH TITLE + 3 DOT MENU -->
-<div class="top-header">
-  <h2 class="site-title">Salman Unique Notes</h2>
+<!-- ⭐ TOP BAR -->
+<header class="topbar">
+  <div class="logo">Salman Unique Notes</div>
   <div class="menu-icon" onclick="openMenu()">☰</div>
-</div>
+</header>
 
 <!-- ⭐ SIDE MENU -->
 <aside id="sideMenu" class="side-menu">
-  <div class="close-btn" onclick="closeMenu()">✖</div>
+  <div class="close-btn" onclick="closeMenu()">✕</div>
 
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -27,37 +26,27 @@
     <li><a href="Notes.html">Notes</a></li>
     <li><a href="Test.html">Online Test</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="Contact.html">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </aside>
 
 <!-- ⭐ HEADER -->
-<header class="header">
+<section class="header">
   <h1>📘 Salman Unique Notes</h1>
   <p>Bihar Board — Class 8, 9 & 10 Notes</p>
-</header>
+</section>
 
-<!-- ⭐ MAIN -->
+<!-- ⭐ MAIN BUTTONS -->
 <main class="main-box">
   <a href="class8.html" class="card">Class 8 Notes</a>
   <a href="class9.html" class="card">Class 9 Notes</a>
   <a href="class10.html" class="card">Class 10 Notes</a>
 </main>
 
-<!-- ⭐ FOOTER -->
 <footer class="footer">
   © 2025 Salman Unique Notes | All Rights Reserved
 </footer>
 
-<!-- ⭐ MENU JS -->
-<script>
-function openMenu() {
-  document.getElementById("sideMenu").style.width = "260px";
-}
-function closeMenu() {
-  document.getElementById("sideMenu").style.width = "0";
-}
-</script>
-
+<script src="js/script.js"></script>
 </body>
 </html>
