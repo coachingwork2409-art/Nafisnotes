@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="utf-8" />
@@ -9,56 +9,43 @@
 
 <body>
 
-  <!-- HEADER (same as index) -->
-  <header class="topbar">
+<header class="topbar">
     <img src="logo.png" class="site-logo" alt="Logo">
     <div class="logo-text">Salman Unique Notes</div>
     <div class="menu-icon" onclick="openMenu()">☰</div>
-  </header>
+</header>
 
-  <!-- OVERLAY -->
-  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<div id="overlay" class="overlay"></div>
 
-  <!-- SIDE MENU -->
-  <aside id="sideMenu" class="side-menu" aria-hidden="true">
-    <div class="menu-top">
-      <span class="menu-title">Menu</span>
-      <button class="close-btn" onclick="closeMenu()">✕</button>
-    </div>
+<aside id="sideMenu" class="side-menu">
+  <div class="close-btn" onclick="closeMenu()">✕</div>
+  <a href="index.html">Home</a>
+  <a href="class8.html">Class 8</a>
+  <a href="class9.html">Class 9</a>
+  <a href="class10.html">Class 10</a>
+  <a href="notes.html">Notes</a>
+  <a href="test.html">Online Test</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</aside>
 
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="class8.html">Class 8</a></li>
-      <li><a href="class9.html">Class 9</a></li>
-      <li><a href="class10.html">Class 10</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="test.html">Online Test</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </aside>
+<section class="header">
+  <h1>📘 Class 8 Notes</h1>
+  <p>Bihar Board – All Chapters</p>
+</section>
 
-  <!-- PAGE HEADER -->
-  <section class="header">
-    <h1>📘 Class 8 Notes</h1>
-    <p>Bihar Board – All Chapters</p>
-  </section>
+<main class="main-box">
+  <a class="glow-card">✨ Chapter 1 – वास्तविक संख्याएँ</a>
+  <a class="glow-card">✨ Chapter 2 – बहुपद</a>
+  <a class="glow-card">✨ Chapter 3 – दो चर वाले रेखीय समीकरण</a>
+  <a class="glow-card">✨ Chapter 4 – त्रिभुज</a>
+  <a class="glow-card">✨ Chapter 5 – घन एवं घनाभ</a>
+  <a class="glow-card coming-soon">More chapters uploading soon…</a>
+</main>
 
-  <!-- MAIN CONTENT -->
-  <main class="main-box">
+<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 
-    <a href="#" class="glow-card">✨ Chapter 1 — वास्तविक संख्याएँ</a>
-    <a href="#" class="glow-card">✨ Chapter 2 — बहुपद</a>
-    <a href="#" class="glow-card">✨ Chapter 3 — दो चर वाले रेखीय समीकरण</a>
-    <a href="#" class="glow-card">✨ Chapter 4 — त्रिभुज</a>
-    <a href="#" class="glow-card">✨ Chapter 5 — घन एवं घनाभ</a>
+<script src="js/script.js"></script>
 
-    <a href="#" class="glow-card coming-soon">More chapters uploading soon…</a>
-
-  </main>
-
-  <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
