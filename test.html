@@ -6,50 +6,13 @@
   <title>Online Test - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-  <!-- MOBILE MENU BUTTON -->
-<div class="mobile-header">
-  <span class="logo-text">Salman Unique Notes</span>
-  <span class="menu-icon" onclick="openMenu()">&#9776;</span>
-</div>
-
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <div class="menu-top">
-    <span class="menu-title">Salman Unique Notes</span>
-    <span class="close-btn" onclick="closeMenu()">✖</span>
-  </div>
-
-  <a href="index.html">Home</a>
-  <a href="class8.html">Class 8</a>
-  <a href="class9.html">Class 9</a>
-  <a href="class10.html">Class 10</a>
-  <a href="Notes.html">Notes</a>
-  <a href="Test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="Contact.html">Contact</a>
-</div>
 <body>
-
-  <nav class="top-nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="class8.html" class="nav-link">Class 8</a>
-    <a href="class9.html" class="nav-link">Class 9</a>
-    <a href="class10.html" class="nav-link">Class 10</a>
-    <a href="notes.html" class="nav-link">Notes</a>
-    <a href="test.html" class="nav-link active">Online Test</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-
-    <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
-  </nav>
-
-  <div id="overlay" class="overlay"></div>
-  <aside id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <h3>📘 Salman Unique Notes</h3>
-      <button id="closeBtn" class="close-btn" aria-label="Close menu">✕</button>
-    </div>
-    <ul class="drawer-list">
+  <!-- same topbar, overlay, sidemenu -->
+  <header class="topbar"><div class="logo">Salman Unique Notes</div><button class="menu-icon" onclick="openMenu()">☰</button></header>
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <div class="menu-top"><span class="menu-title">Salman Unique Notes</span><button class="close-btn" onclick="closeMenu()">✕</button></div>
+    <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="class8.html">Class 8</a></li>
       <li><a href="class9.html">Class 9</a></li>
@@ -61,20 +24,11 @@
     </ul>
   </aside>
 
-  <header class="header">
-    <h1>📘 Online Test</h1>
-    <p>Practice tests coming soon</p>
-  </header>
+  <header class="header"><h1>Online Test</h1><p>Practice MCQs coming soon</p></header>
 
-  <main class="main-box">
-    <a href="#" class="chapter-card">Mock Test 1 — Class 10</a>
-    <a href="#" class="chapter-card">Mock Test 1 — Class 9</a>
-    <a href="#" class="chapter-card">Mock Test 1 — Class 8</a>
-    <a href="#" class="chapter-card">More tests uploading soon...</a>
-  </main>
+  <main class="main-box"><p style="max-width:700px;">यहाँ जल्दी ही टेस्ट और MCQ आएंगे।</p></main>
 
   <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
-
   <script src="js/script.js"></script>
 </body>
 </html>
