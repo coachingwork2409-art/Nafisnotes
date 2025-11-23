@@ -59,3 +59,11 @@ body {
 .card:hover {
     transform: scale(1.05);
 }
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #1b73e8;
+  color: white;
+  margin-top: 40px;
+  font-size: 14px;
+}
