@@ -1,65 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-  <!-- MOBILE MENU BUTTON -->
-<div class="mobile-header">
-  <span class="logo-text">Salman Unique Notes</span>
-  <span class="menu-icon" onclick="openMenu()">&#9776;</span>
-</div>
-
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <div class="menu-top">
-    <span class="menu-title">Salman Unique Notes</span>
-    <span class="close-btn" onclick="closeMenu()">✖</span>
-  </div>
-
-  <a href="index.html">Home</a>
-  <a href="class8.html">Class 8</a>
-  <a href="class9.html">Class 9</a>
-  <a href="class10.html">Class 10</a>
-  <a href="Notes.html">Notes</a>
-  <a href="Test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="Contact.html">Contact</a>
-</div>
 <body>
 
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="class8.html">Class 8</a>
-    <a href="class9.html">Class 9</a>
-    <a href="class10.html">Class 10</a>
-    <a href="about.html" class="active">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  <header class="topbar">
+    <div class="logo">Salman Unique Notes</div>
+    <button class="menu-icon" onclick="openMenu()">☰</button>
+  </header>
 
-  <div class="header">
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <div class="menu-top">
+      <span class="menu-title">Salman Unique Notes</span>
+      <button class="close-btn" onclick="closeMenu()">✕</button>
+    </div>
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="class8.html">Class 8</a></li>
+      <li><a href="class9.html">Class 9</a></li>
+      <li><a href="class10.html">Class 10</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="test.html">Online Test</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </aside>
+
+  <header class="header">
     <h1>📘 About — Salman Unique Notes</h1>
     <p>Short info about the website and its purpose</p>
-  </div>
+  </header>
 
-  <div class="main-box" style="max-width:900px;padding:20px;">
-    <p style="line-height:1.7;font-size:16px;color:#333;">
-      Salman Unique Notes का लक्ष्य छात्रों को Bihar Board के लिए आसान और सटीक नोट्स उपलब्ध कराना है।  
-      यह साइट क्लास 8, 9 और 10 के मुख्य chapters और notes पर केंद्रित है — सरल भाषा में, परीक्षा-उन्मुख और downloadable सामग्री के साथ।
+  <main class="main-box" style="max-width:800px; align-items:flex-start;">
+    <p style="font-size:16px; color:#222; line-height:1.6;">
+      Salman Unique Notes का लक्ष्य छात्रों को Bihar Board के लिए आसान और सटीक नोट्स उपलब्ध कराना है। यह साइट क्लास 8, 9 और 10 के मुख्य chapters और downloadable notes पर केन्द्रित है — सरल भाषा में, परीक्षा-मुख्य और मोबाइल फ्रेंडली पेज के साथ।
     </p>
 
-    <h3 style="margin-top:18px;color:#0073ff;">हम क्या Provide करते हैं</h3>
-    <ul style="margin:8px 0 16px 20px;color:#333;line-height:1.6;">
-      <li>साफ़ और छोटा नोट्स (पॉइंट में)</li>
-      <li>प्रैक्टिस प्रश्न / MCQ (जल्द आ रहे हैं)</li>
-      <li>पढ़ाई के लिए आसान लेआउट और मोबाइल फ्रेंडली पेज</li>
+    <h3 style="color:#0073ff;margin-top:14px;">हम क्या Provide करते हैं</h3>
+    <ul style="margin-left:18px; margin-top:8px;">
+      <li>साफ और छोटा नोट्स (पॉइंट में)</li>
+      <li>प्रैक्टिस प्रश्न / MCQ</li>
+      <li>डाउनलोडेबल और मोबाइल फ्रेंडली पेज</li>
     </ul>
-
-    <p style="color:#555;margin-top:6px;">अगर आप contributor बनना चाहते हैं या notes भेजना चाहते हैं, तो Contact page पर संदेश भेजें।</p>
-  </div>
+  </main>
 
   <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
