@@ -1,3 +1,4 @@
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,9 +8,68 @@
 body {
     font-family: Arial, sans-serif;
     background: #eef3f8;
+    width: 100%;
 }
 
-/* ⭐ TOP NAVBAR ONLY */
+/* HEADER */
+.header {
+    background: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.header h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* MAIN BOX */
+.main-box {
+    width: 100%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* CARD BUTTONS */
+.card, .chapter-card {
+    width: 85%;
+    max-width: 350px;
+    background: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #0d6efd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+    display: block;
+}
+
+.card:hover, .chapter-card:hover {
+    background: #eef4ff;
+    transform: scale(1.05);
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* ⭐ TOP NAVBAR */
 .top-nav {
     width: 100%;
     background: #ffffff;
@@ -35,55 +95,32 @@ body {
     background: #eef4ff;
 }
 
-/* HEADER */
-.header {
-    background: #0d6efd;
-    color: white;
-    text-align: center;
-    padding: 20px 10px;
+.top-nav a.active {
+    background: #eaf4ff;
+    color: #005ecb;
 }
 
-.header h1 {
-    font-size: 22px;
-    margin-bottom: 5px;
-}
-
-.header p {
+/* FORM FIELDS */
+.input-field {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d8d8d8;
     font-size: 14px;
-    opacity: 0.9;
+    margin-top: 6px;
 }
 
-/* MAIN CONTENT */
-.main-box {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+.btn {
+    background: #0073ff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-.card {
-    width: 85%;
-    max-width: 360px;
-    background: white;
-    padding: 18px;
-    text-align: center;
-    border-radius: 12px;
-    font-size: 18px;
-    text-decoration: none;
-    color: #0d6efd;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.03);
-}
-
-/* FOOTER */
-.footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 13px;
-    color: #555;
+.btn:hover {
+    background: #005ecb;
 }
