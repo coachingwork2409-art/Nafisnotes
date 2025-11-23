@@ -5,38 +5,36 @@
     box-sizing: border-box;
 }
 
-/* BODY */
 body {
     font-family: Arial, sans-serif;
     background: #eef3f8;
-    width: 100%;
 }
 
-/* ⭐ TOP NAVIGATION (FINAL) */
+/* ⭐ TOP NAVBAR */
 .top-nav {
     width: 100%;
     background: #ffffff;
     padding: 12px 0;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 999;
     border-bottom: 1px solid #e5e5e5;
 }
 
 .top-nav a {
     color: #0073ff;
     font-weight: 600;
+    font-size: 18px;
     text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 17px;
 }
 
 .top-nav a:hover {
     background: #eef4ff;
+    padding: 6px 10px;
+    border-radius: 6px;
 }
 
 /* HEADER */
@@ -44,34 +42,33 @@ body {
     background: #0d6efd;
     color: white;
     text-align: center;
-    padding: 20px 10px;
-    margin-bottom: 20px;
+    padding: 25px 10px;
+    margin-bottom: 25px;
 }
 
 .header h1 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 5px;
 }
 
 .header p {
-    font-size: 14px;
-    opacity: 0.9;
+    font-size: 15px;
+    opacity: 0.95;
 }
 
-/* MAIN BOX */
+/* MAIN BUTTON BOX */
 .main-box {
-    width: 100%;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    padding: 10px;
 }
 
-/* HOME PAGE CARDS */
-.card {
+/* NOTES CARDS */
+.card, .chapter-card {
     width: 80%;
-    max-width: 350px;
+    max-width: 360px;
     background: white;
     padding: 15px;
     text-align: center;
@@ -83,34 +80,15 @@ body {
     transition: 0.2s;
 }
 
-.card:hover {
+.card:hover, .chapter-card:hover {
     transform: scale(1.05);
-}
-
-/* CHAPTER LIST CARDS */
-.chapter-card {
-    display: block;
-    padding: 14px 20px;
-    margin: 12px 0;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    text-decoration: none;
-    color: #0059ff;
-    font-weight: 600;
-    font-size: 18px;
-    text-align: center;
-}
-
-.chapter-card:hover {
-    background: #eef4ff;
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
     padding: 15px;
-    margin-top: 30px;
-    font-size: 13px;
+    margin-top: 40px;
+    font-size: 14px;
     color: #555;
 }
