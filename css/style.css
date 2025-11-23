@@ -143,3 +143,28 @@ body {
 .navbar a:hover {
     background: #e0e0e0;
 }
+/* ⭐ TOP NAVBAR */
+.top-nav {
+    width: 100%;
+    background: #ffffff;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.top-nav a {
+    color: #0073ff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.top-nav a:hover {
+    background: #eef4ff;
+}
