@@ -1,37 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 8 Notes</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Class 8 Notes - Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="class8.html" class="active">Class 8</a>
-    <a href="class9.html">Class 9</a>
-    <a href="class10.html">Class 10</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-</div>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="class8.html" class="nav-link active">Class 8</a>
+    <a href="class9.html" class="nav-link">Class 9</a>
+    <a href="class10.html" class="nav-link">Class 10</a>
+    <a href="notes.html" class="nav-link">Notes</a>
+    <a href="test.html" class="nav-link">Online Test</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
 
-<div class="header">
+    <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+  </nav>
+
+  <div id="overlay" class="overlay"></div>
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h3>📘 Salman Unique Notes</h3>
+      <button id="closeBtn" class="close-btn" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="drawer-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="class8.html">Class 8</a></li>
+      <li><a href="class9.html">Class 9</a></li>
+      <li><a href="class10.html">Class 10</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="test.html">Online Test</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </aside>
+
+  <header class="header">
     <h1>📘 Class 8 Notes</h1>
-    <p>Bihar Board – All Chapters</p>
-</div>
+    <p>Bihar Board — All Chapters</p>
+  </header>
 
-<div class="main-box">
-    <a class="chapter-card">Chapter 1 – वास्तविक संख्याएँ</a>
-    <a class="chapter-card">Chapter 2 – बहुपद</a>
-    <a class="chapter-card">Chapter 3 – रेखीय समीकरण</a>
-    <a class="chapter-card">Chapter 4 – त्रिभुज</a>
-    <a class="chapter-card">Chapter 5 – घन एवं घनाभ</a>
-    <a class="chapter-card">More chapters uploading soon…</a>
-</div>
+  <main class="main-box">
+    <a href="#" class="chapter-card">Chapter 1 — वास्तविक संख्याएँ</a>
+    <a href="#" class="chapter-card">Chapter 2 — बहुपद</a>
+    <a href="#" class="chapter-card">Chapter 3 — दो चर वाले रेखीय समीकरण</a>
+    <a href="#" class="chapter-card">Chapter 4 — त्रिभुज</a>
+    <a href="#" class="chapter-card">Chapter 5 — घन एवं घनाभ</a>
+    <a href="#" class="chapter-card">More chapters uploading soon...</a>
+  </main>
 
-<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
+  <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 
+  <script src="js/script.js"></script>
 </body>
 </html>
