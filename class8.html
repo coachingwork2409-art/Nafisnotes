@@ -1,82 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Class 8 Notes - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-  <!-- MOBILE MENU BUTTON -->
-<div class="mobile-header">
-  <span class="logo-text">Salman Unique Notes</span>
-  <span class="menu-icon" onclick="openMenu()">&#9776;</span>
-</div>
-
-<!-- SIDE MENU -->
-<div id="sideMenu" class="side-menu">
-  <div class="menu-top">
-    <span class="menu-title">Salman Unique Notes</span>
-    <span class="close-btn" onclick="closeMenu()">✖</span>
-  </div>
-
-  <a href="index.html">Home</a>
-  <a href="class8.html">Class 8</a>
-  <a href="class9.html">Class 9</a>
-  <a href="class10.html">Class 10</a>
-  <a href="Notes.html">Notes</a>
-  <a href="Test.html">Online Test</a>
-  <a href="about.html">About</a>
-  <a href="Contact.html">Contact</a>
-</div>
 <body>
 
-  <nav class="top-nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="class8.html" class="nav-link active">Class 8</a>
-    <a href="class9.html" class="nav-link">Class 9</a>
-    <a href="class10.html" class="nav-link">Class 10</a>
-    <a href="notes.html" class="nav-link">Notes</a>
-    <a href="test.html" class="nav-link">Online Test</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="contact.html" class="nav-link">Contact</a>
+<!-- ⭐ TOP BAR -->
+<header class="topbar">
+  <div class="logo">Salman Unique Notes</div>
+  <div class="menu-icon" onclick="openMenu()">☰</div>
+</header>
 
-    <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
-  </nav>
+<!-- ⭐ SIDE MENU -->
+<aside id="sideMenu" class="side-menu">
+  <div class="close-btn" onclick="closeMenu()">✕</div>
 
-  <div id="overlay" class="overlay"></div>
-  <aside id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <h3>📘 Salman Unique Notes</h3>
-      <button id="closeBtn" class="close-btn" aria-label="Close menu">✕</button>
-    </div>
-    <ul class="drawer-list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="class8.html">Class 8</a></li>
-      <li><a href="class9.html">Class 9</a></li>
-      <li><a href="class10.html">Class 10</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="test.html">Online Test</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </aside>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="class8.html" class="active">Class 8</a></li>
+    <li><a href="class9.html">Class 9</a></li>
+    <li><a href="class10.html">Class 10</a></li>
+    <li><a href="Notes.html">Notes</a></li>
+    <li><a href="Test.html">Online Test</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</aside>
 
-  <header class="header">
-    <h1>📘 Class 8 Notes</h1>
-    <p>Bihar Board — All Chapters</p>
-  </header>
+<!-- ⭐ HEADER -->
+<section class="header">
+  <h1>📘 Class 8 Notes</h1>
+  <p>Bihar Board — All Chapters</p>
+</section>
 
-  <main class="main-box">
-    <a href="#" class="chapter-card">Chapter 1 — वास्तविक संख्याएँ</a>
-    <a href="#" class="chapter-card">Chapter 2 — बहुपद</a>
-    <a href="#" class="chapter-card">Chapter 3 — दो चर वाले रेखीय समीकरण</a>
-    <a href="#" class="chapter-card">Chapter 4 — त्रिभुज</a>
-    <a href="#" class="chapter-card">Chapter 5 — घन एवं घनाभ</a>
-    <a href="#" class="chapter-card">More chapters uploading soon...</a>
-  </main>
+<!-- ⭐ MAIN CONTENT -->
+<main class="main-box">
+  <a href="#" class="chapter-card">Chapter 1 — वास्तविक संख्याएँ</a>
+  <a href="#" class="chapter-card">Chapter 2 — बहुपद</a>
+  <a href="#" class="chapter-card">Chapter 3 — दो चर वाले रेखीय समीकरण</a>
+  <a href="#" class="chapter-card">Chapter 4 — त्रिभुज</a>
+  <a href="#" class="chapter-card">Chapter 5 — घन एवं घनाभ</a>
+  <a href="#" class="chapter-card">More chapters uploading soon...</a>
+</main>
 
-  <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
+<footer class="footer">
+  © 2025 Salman Unique Notes | All Rights Reserved
+</footer>
 
-  <script src="js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
