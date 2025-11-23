@@ -191,3 +191,79 @@ body{
   .card, .chapter-card{ font-size:16px; padding:14px; }
   .drawer { width: 280px; }
 }
+/* Top Bar */
+.mobile-header {
+  width: 100%;
+  background: #ffffff;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0073ff;
+}
+
+.menu-icon {
+  font-size: 26px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Side Menu */
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background: white;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+}
+
+.side-menu a {
+  padding: 14px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #0073ff;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.side-menu a:hover {
+  background: #eef4ff;
+}
+
+/* Menu top bar */
+.menu-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.menu-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+}
