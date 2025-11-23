@@ -1,40 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About - Salman Unique Notes</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-
 <header class="topbar">
-<img src="logo.png" class="site-logo">
-<div class="logo-text">Salman Unique Notes</div>
-<div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
+  <div class="right"><button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button></div>
 </header>
 
-<div id="overlay" class="overlay"></div>
-
-<aside id="sideMenu" class="side-menu">
-<div class="close-btn" onclick="closeMenu()">✕</div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="class8.html">Class 8</a>
+    <a href="class9.html">Class 9</a>
+    <a href="class10.html">Class 10</a>
+    <a href="notes.html">Notes</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </aside>
 
-<section class="header">
-<h1>ℹ️ About</h1>
-<p>जानिए हमारे बारे में</p>
-</section>
+<main class="page-content about-page">
+  <section class="header-section">
+    <h2>About Salman Unique Notes</h2>
+    <p>हमारा मिशन — छात्रों को सरल, सटीक और बोर्ड-फ्रेंडली नोट्स प्रदान करना ताकि हर छात्र अपनी परफॉर्मेंस में सुधार कर सके।</p>
+  </section>
 
-<main class="main-box">
-<p class="glow-card">हमारा उद्देश्य बिहार बोर्ड के छात्रों तक बेहतरीन और आसान Study Material पहुँचाना है।</p>
+  <section class="about-body">
+    <h3>Mission</h3>
+    <p>छात्रों के सपनों को पूरा करना और उन्हें टॉपर बनाने में मदद करना।</p>
+
+    <h3>Vision</h3>
+    <p>हर गांव-शहर के छात्रों तक quality notes पहुँचाना।</p>
+  </section>
 </main>
 
-<footer class="footer">© 2025 Salman Unique Notes</footer>
-
+<footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 <script src="js/script.js"></script>
-
 </body>
 </html>
