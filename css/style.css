@@ -1,105 +1,132 @@
 /* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body{height:100%;}
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    color: #222;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(180deg,#0a6ad9,#0058c4);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-/* ⭐ HEADER BAR */
-.topbar {
-    width: 100%;
-    background: #0b67d3;
-    padding: 12px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 2000;
+/* TOPBAR */
+.topbar{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 14px;
+  background: rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:sticky; top:0; z-index:2000;
+}
+.topbar .left, .topbar .center, .topbar .right {
+  display:flex; align-items:center;
+}
+.site-logo{
+  width:46px; height:46px; object-fit:contain; border-radius:6px;
+  margin-right:8px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+.site-title{
+  font-weight:800; font-size:20px; color:#fff; text-align:center;
 }
 
-.site-logo {
-    width: 42px;
-    height: auto;
+/* center alignment: put title centered */
+.topbar .center { flex:1; justify-content:center; pointer-events:none; }
+.topbar .left { width:60px; justify-content:flex-start; }
+.topbar .right { width:60px; justify-content:flex-end; }
+
+.menu-btn{
+  background:transparent; border:none; color:#fff; font-size:26px; cursor:pointer;
 }
 
-.logo-text {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    flex: 1;
+/* HERO (Home) */
+.hero{
+  min-height:60vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:40px 20px;
+  text-align:center;
+}
+.hero h1{
+  font-size:30px; font-weight:800; margin-bottom:8px; color:#fff;
+  text-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
+.subtitle{ font-size:18px; opacity:0.95; margin-bottom:10px; }
+
+/* PAGE CONTENT */
+.page-content{ padding:28px 18px; max-width:980px; margin:0 auto; }
+
+/* Header section used on class pages */
+.header-section { text-align:center; margin-bottom:18px; color:#fff; }
+.header-section h2 { font-size:26px; font-weight:800; margin-bottom:6px; }
+.header-section p { opacity:0.95; }
+
+/* GLOW GLASS CARDS */
+.cards{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+.glow-card{
+  width:100%; max-width:760px;
+  padding:16px 18px;
+  border-radius:14px;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  color:#fff; text-decoration:none; font-size:18px; font-weight:700;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 12px rgba(0,150,255,0.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.glow-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.34), 0 0 28px rgba(0,160,255,0.28);
 }
 
-/* ⭐ MENU ICON */
-.menu-icon {
-    font-size: 26px;
-    font-weight: bold;
-    cursor: pointer;
+/* CONTACT */
+.contact-form{ display:flex; gap:20px; flex-direction:column; max-width:700px; margin:0 auto; }
+.contact-form label{ color:#fff; font-weight:700; margin-bottom:6px; display:block; }
+.contact-form input, .contact-form textarea{
+  padding:10px 12px; border-radius:8px; border:none; outline:none; width:100%;
+  background: rgba(255,255,255,0.08); color:#fff;
+}
+.contact-details{ margin-top:12px; opacity:0.95; }
+
+/* BUTTONS */
+.btn{
+  background: linear-gradient(90deg,#00b0ff,#0073ff);
+  color:#fff; padding:10px 16px; border-radius:10px; border:none; cursor:pointer;
+  font-weight:800; box-shadow:0 8px 20px rgba(0,100,255,0.18);
 }
 
-/* ⭐ SIDE MENU */
-.side-menu {
-    position: fixed;
-    top: 0;
-    right: -260px;
-    width: 260px;
-    height: 100%;
-    background: #fff;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.20);
-    transition: 0.3s ease;
-    z-index: 3000;
-    padding: 20px;
+/* FOOTER */
+.footer{
+  text-align:center; padding:20px; margin-top:30px; font-size:14px; color:#e6f1ff;
+  border-top:1px solid rgba(255,255,255,0.03);
 }
 
-.side-menu.open {
-    right: 0;
+/* SIDE MENU (sliding from right) */
+.overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,0.3); opacity:0; visibility:hidden;
+  transition:opacity .18s ease, visibility .18s ease; z-index:1500;
 }
-
-.side-menu a {
-    display: block;
-    padding: 12px 0;
-    font-size: 18px;
-    color: #0b67d3;
-    text-decoration: none;
-    border-bottom: 1px solid #eee;
+.side-menu{
+  position:fixed; right:-320px; top:0; width:300px; height:100%; background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));
+  box-shadow: -10px 0 30px rgba(0,0,0,0.45);
+  padding:18px; transition:right .22s ease; z-index:1600; overflow:auto;
 }
+.side-menu.open{ right:0; }
+.overlay.show{ opacity:1; visibility:visible; }
 
-.close-btn {
-    font-size: 22px;
-    text-align: right;
-    margin-bottom: 20px;
-    cursor: pointer;
+/* side nav inside */
+.side-menu .close-side{ background:transparent; border:none; color:#fff; font-size:22px; float:right; margin-bottom:12px; cursor:pointer; }
+.side-menu nav{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+.side-menu a{ color:#cce8ff; text-decoration:none; padding:10px 8px; border-radius:6px; font-weight:700; }
+.side-menu a:hover{ background: rgba(255,255,255,0.02); color:#fff; }
+
+/* Responsive */
+@media (min-width:900px){
+  .cards { flex-direction:row; justify-content:center; flex-wrap:wrap; }
+  .glow-card{ width:320px; }
 }
-
-/* ⭐ OVERLAY */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    display: none;
-    z-index: 2500;
-}
-
-.overlay.show {
-    display: block;
-}
-
-/* ⭐ FOOTER */
-.footer {
-    text-align: center;
-    padding: 18px;
-    font-size: 14px;
-    background: #f0f0f0;
-    margin-top: 50px;
-    color: #333;
+@media (max-width:420px){
+  .hero h1{ font-size:24px; }
+  .site-logo{ width:40px; height:40px; }
 }
