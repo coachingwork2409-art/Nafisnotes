@@ -3,7 +3,7 @@
 html,body{height:100%;}
 body {
   font-family: "Arial", sans-serif;
-  background: linear-gradient(180deg,#0a6ad9,#0058c4);
+  background: #121212;
   color:#fff;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
