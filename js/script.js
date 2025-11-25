@@ -1,16 +1,18 @@
-// js/script.js
-// Main exam logic for test.html
+// ============================
+// MAIN EXAM + MENU FIXED CODE
+// ============================
 
 (function(){
-// DOM
+
+// DOM CHECK (only for test.html)
 const startCard = document.getElementById('startCard');
 const examCard = document.getElementById('examCard');
 const resultCard = document.getElementById('resultCard');
 
+if(startCard && examCard && resultCard){
+
 const startBtn = document.getElementById('startBtn');
-const classSelect = document.getElementById('classSelect');
 const subjectSelect = document.getElementById('subjectSelect');
-const chapterSelect = document.getElementById('chapterSelect');
 
 const qText = document.getElementById('qText');
 const optsBox = document.getElementById('optsBox');
@@ -24,189 +26,145 @@ const resultList = document.getElementById('resultList');
 const printBtn = document.getElementById('printBtn');
 const retakeBtn = document.getElementById('retakeBtn');
 
-// State
-let questions = []; // current exam questions
+let questions = [];
 let index = 0;
-let userAnswers = {}; // { idx: choiceIndex (0..3) }
-let marked = {}; // flagged questions
+let userAnswers = {};
+let marked = {};
 let totalQuestions = 0;
 let subjectKey = '';
 
-// helpers
-function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+function shuffle(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
-// when Start clicked
 startBtn.addEventListener('click', () => {
-subjectKey = subjectSelect.value;
-if(!subjectKey){ alert('कृपया subject चुनें'); return; }
 
-// pick question bank  
-const bank = window.questionBank && window.questionBank[subjectKey];  
-if(!bank || !Array.isArray(bank) || bank.length===0){  
-  alert('इस विषय के प्रश्न उपलब्ध नहीं हैं।');  
-  return;  
-}  
+  subjectKey = subjectSelect.value;
+  if(!subjectKey){ alert("कृपया subject चुनें"); return; }
 
-// choose count: prefer 100 for many subjects, but use bank length if smaller.  
-// for science example we use up to 80 (as bank has 80)  
-let count = 100;  
-if(subjectKey === 'science') count = Math.min(80, bank.length);  
-else count = Math.min(100, bank.length);  
+  const bank = window.questionBank && window.questionBank[subjectKey];
+  if(!bank){ alert("इस subject का bank नहीं मिला"); return; }
 
-// create working copy and shuffle, slice count  
-questions = shuffle(bank.slice()).slice(0, count);  
-totalQuestions = questions.length;  
-index = 0;  
-userAnswers = {};  
-marked = {};  
+  let count = subjectKey === "science" ? Math.min(80, bank.length) : Math.min(100, bank.length);
 
-// hide start show exam  
-startCard.style.display = 'none';  
-resultCard.style.display = 'none';  
-examCard.style.display = 'block';  
-loadQuestion();
+  questions = shuffle(bank.slice()).slice(0, count);
+  totalQuestions = questions.length;
+  index = 0;
+  userAnswers = {};
+  marked = {};
 
+  startCard.style.display = "none";
+  resultCard.style.display = "none";
+  examCard.style.display = "block";
+
+  loadQuestion();
 });
 
 function loadQuestion(){
-const qObj = questions[index];
-progressText.textContent = Question ${index+1} / ${totalQuestions};
+  const qObj = questions[index];
 
-// question  
-qText.innerHTML = `<span style="opacity:0.95; margin-right:6px;">Q${index+1}.</span> ${qObj.q}`;  
+  // FIXED ERROR LINE 🔥
+  progressText.textContent = `Question ${index+1} / ${totalQuestions}`;
 
-// options  
-optsBox.innerHTML = '';  
-qObj.options.forEach((optText, i) => {  
-  const div = document.createElement('div');  
-  div.className = 'opt';  
-  div.setAttribute('data-choice', i);  
-  div.innerHTML = `<div style="min-width:28px; font-weight:800;">${String.fromCharCode(65+i)})</div><div>${optText}</div>`;  
-  // highlight if selected  
-  if(userAnswers[index] === i) div.classList.add('selected');  
-  div.addEventListener('click', () => {  
-    // select choice  
-    userAnswers[index] = i;  
-    // visual  
-    Array.from(optsBox.children).forEach(c => c.classList.remove('selected'));  
-    div.classList.add('selected');  
-  });  
-  optsBox.appendChild(div);  
-});  
+  qText.innerHTML = `<span style="opacity:0.95;margin-right:6px;">Q${index+1}.</span> ${qObj.q}`;
 
-// prev/next button text and disable states  
-prevBtn.disabled = index === 0;  
-nextBtn.textContent = (index === totalQuestions-1) ? 'Submit' : 'Next';  
+  optsBox.innerHTML = "";
 
-// toggle mark button text  
-markBtn.textContent = marked[index] ? 'Unmark' : 'Mark';
+  qObj.options.forEach((opt,i)=>{
+    const div = document.createElement("div");
+    div.className = "opt";
+    div.innerHTML = `<div style="min-width:28px;font-weight:800;">${String.fromCharCode(65+i)})</div> <div>${opt}</div>`;
 
+    if(userAnswers[index] === i) div.classList.add("selected");
+
+    div.addEventListener("click",()=>{
+      userAnswers[index] = i;
+      [...optsBox.children].forEach(c=>c.classList.remove("selected"));
+      div.classList.add("selected");
+    });
+
+    optsBox.appendChild(div);
+  });
+
+  prevBtn.disabled = index === 0;
+  nextBtn.textContent = index === totalQuestions - 1 ? "Submit" : "Next";
+  markBtn.textContent = marked[index] ? "Unmark" : "Mark";
 }
 
-prevBtn.addEventListener('click', () => {
-if(index>0){ index--; loadQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+prevBtn.addEventListener("click",()=>{
+  if(index>0){ index--; loadQuestion(); }
 });
 
-nextBtn.addEventListener('click', () => {
-// if last and Submit
-if(index === totalQuestions-1){
-// Confirm submit
-if(!confirm('क्या आप टेस्ट submit करना चाहते हैं?')) return;
-evaluate();
-return;
-}
-// allow move forward only if answer selected (you can change this behaviour)
-// If you want to force selection before moving next, uncomment:
-// if(typeof userAnswers[index] === 'undefined'){ alert('कृपया option चुनें'); return; }
-
-index++;  
-loadQuestion();  
-window.scrollTo({top:0,behavior:'smooth'});
-
+nextBtn.addEventListener("click",()=>{
+  if(index === totalQuestions - 1){
+    if(!confirm("Submit करना चाहते?")) return;
+    evaluate();
+    return;
+  }
+  index++;
+  loadQuestion();
 });
 
-markBtn.addEventListener('click', () => {
-marked[index] = !marked[index];
-markBtn.textContent = marked[index] ? 'Unmark' : 'Mark';
+markBtn.addEventListener("click",()=>{
+  marked[index] = !marked[index];
+  markBtn.textContent = marked[index] ? "Unmark" : "Mark";
 });
 
-// evaluate & show result
 function evaluate(){
-examCard.style.display = 'none';
-resultCard.style.display = 'block';
+  examCard.style.display = "none";
+  resultCard.style.display = "block";
 
-// compute score  
-let score = 0;  
-resultList.innerHTML = '';  
+  let score = 0;
+  resultList.innerHTML = "";
 
-questions.forEach((q,i) => {  
-  const user = userAnswers[i];  
-  const correct = q.ans;  
-  const item = document.createElement('div');  
-  item.className = 'result-item';  
-  // highlight correct/wrong  
-  if(user === correct){  
-    score++;  
-    item.style.borderLeft = '6px solid #2ecc71';  
-  } else {  
-    item.style.borderLeft = '6px solid #e74c3c';  
-  }  
-  // content  
-  const yourAnsText = (typeof user === 'number') ? q.options[user] : '<em>Not Answered</em>';  
-  item.innerHTML = `<h4 style="margin:0 0 6px 0;">Q${i+1}. ${q.q}</h4>  
-    <div style="display:flex; gap:12px; flex-wrap:wrap;">  
-      <div style="min-width:220px;"><strong>Your Answer:</strong> ${yourAnsText}</div>  
-      <div style="min-width:220px;"><strong>Correct:</strong> ${q.options[correct]}</div>  
-      <div style="flex:1; text-align:right;">${marked[i] ? '<span style="color:#ffd166">Marked</span>' : ''}</div>  
-    </div>`;  
-  resultList.appendChild(item);  
-});  
+  questions.forEach((q,i)=>{
+    const user = userAnswers[i];
+    const correct = q.ans;
 
-scoreLine.textContent = `Score: ${score} / ${totalQuestions} • Attempted: ${Object.keys(userAnswers).length}`;
+    const box = document.createElement("div");
+    box.className = "result-item";
+    box.style.borderLeft = user === correct ? "6px solid #00ff80" : "6px solid #ff4444";
 
+    box.innerHTML = `
+      <h4>Q${i+1}. ${q.q}</h4>
+      <p><strong>Your:</strong> ${(typeof user==="number")?q.options[user]:"—"}</p>
+      <p><strong>Correct:</strong> ${q.options[correct]}</p>
+    `;
+
+    if(user===correct) score++;
+    resultList.appendChild(box);
+  });
+
+  scoreLine.textContent = `Score: ${score} / ${totalQuestions}`;
 }
 
-printBtn.addEventListener('click', () => {
-window.print();
+printBtn.addEventListener("click",()=>window.print());
+retakeBtn.addEventListener("click",()=>{
+  examCard.style.display="none";
+  resultCard.style.display="none";
+  startCard.style.display="block";
 });
 
-retakeBtn.addEventListener('click', () => {
-// reset to start
-resultCard.style.display = 'none';
-examCard.style.display = 'none';
-startCard.style.display = 'block';
-});
-
-// Keyboard: Enter -> next
-document.addEventListener('keydown', (e) => {
-if(examCard.style.display === 'block'){
-if(e.key === 'Enter') nextBtn.click();
-if(e.key === 'ArrowRight') nextBtn.click();
-if(e.key === 'ArrowLeft') prevBtn.click();
-}
-});
+} // END exam check
 
 })();
+
 // ============================
 // SIDEMENU FINAL WORKING CODE
 // ============================
 
 function openMenu(){
-  const menu = document.getElementById("sideMenu");
-  const overlay = document.getElementById("overlay");
-
-  if(menu && overlay){
-    menu.classList.add("open");
-    overlay.classList.add("show");
-  }
+  const m = document.getElementById("sideMenu");
+  const o = document.getElementById("overlay");
+  if(m && o){ m.classList.add("open"); o.classList.add("show"); }
 }
 
 function closeMenu(){
-  const menu = document.getElementById("sideMenu");
-  const overlay = document.getElementById("overlay");
-
-  if(menu && overlay){
-    menu.classList.remove("open");
-    overlay.classList.remove("show");
-  }
+  const m = document.getElementById("sideMenu");
+  const o = document.getElementById("overlay");
+  if(m && o){ m.classList.remove("open"); o.classList.remove("show"); }
 }
