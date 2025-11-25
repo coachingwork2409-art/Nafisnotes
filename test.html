@@ -1,58 +1,48 @@
 <!doctype html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Online Test - Salman Unique Notes</title>
-<link rel="stylesheet" href="css/style.css">
-<style>
-.select-box { background:rgba(255,255,255,0.05); padding:20px; border-radius:12px; max-width:700px; margin:20px auto; }
-.select-box select {
-  width:100%; padding:12px; margin-top:10px;
-  background:rgba(255,255,255,0.08); color:#fff;
-  border:1px solid rgba(255,255,255,0.2); border-radius:10px;
-}
-.start-btn { margin-top:20px; width:100%; padding:12px; font-size:18px;
-  background:#007bff; border:none; border-radius:10px; font-weight:800; color:#fff; cursor:pointer; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Test - Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* छोटा सा अतिरिक्त स्टाइल जो page-specific है */
+    .card { background: rgba(255,255,255,0.03); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); margin-bottom:18px; }
+    .select { width:100%; padding:12px; border-radius:10px; background:#111; color:#fff; border:1px solid rgba(255,255,255,0.06); }
+    .start-btn { background: linear-gradient(90deg,#00b0ff,#0073ff); color:#fff; padding:12px 20px; border-radius:10px; border:none; font-weight:800; cursor:pointer; width:100%; max-width:320px; }
+    .question-area { max-width:900px; margin:18px auto; }
+    .q-text { font-weight:800; color:#50a8ff; font-size:20px; margin-bottom:12px; }
+    .opt { background: rgba(255,255,255,0.04); padding:12px; border-radius:10px; margin-top:10px; cursor:pointer; display:flex; gap:12px; align-items:center; border:1px solid rgba(255,255,255,0.03); }
+    .opt:hover { transform: translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,0.4); }
+    .opt.selected { background: rgba(0,180,110,0.12); border-color: rgba(0,180,110,0.28); }
+    .opt.correct { background: rgba(0,200,100,0.18); border-color: rgba(0,200,100,0.35); }
+    .opt.wrong { background: rgba(220,50,50,0.12); border-color: rgba(220,50,50,0.28); }
+    .navs { display:flex; justify-content:space-between; gap:14px; margin-top:14px; }
+    .nav-btn { padding:10px 16px; border-radius:10px; border:none; background:#0073ff; color:#fff; cursor:pointer; font-weight:800; }
+    .nav-btn[disabled] { opacity:0.4; pointer-events:none; }
+    .progress { text-align:center; margin-bottom:8px; color:#cfeaff; font-weight:700; }
+    .result-list .result-item { padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.04); background:rgba(0,0,0,0.45); }
+    .print-btn { background:#00b0ff; color:#fff; padding:10px 16px; border-radius:10px; border:none; font-weight:800; cursor:pointer; }
+    @media(max-width:600px){ .q-text{font-size:18px;} }
+  </style>
 </head>
-
 <body>
 
 <header class="topbar">
-  <div class="left"><img src="logo.png" class="site-logo"></div>
+  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
   <div class="center"><div class="site-title">Salman Unique Notes</div></div>
   <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </header>
 
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
-<aside id="sideMenu" class="side-menu">
-  <button class="close-side" onclick="closeMenu()">✕</button>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="class6.html">Class 6</a>
-    <a href="class7.html">Class 7</a>
-    <a href="class8.html">Class 8</a>
-    <a href="class9.html">Class 9</a>
-    <a href="class10.html">Class 10</a>
-    <a href="notes.html">Notes</a>
-    <a href="test.html">Online Test</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</aside>
-
 <main class="page-content">
 
-  <section class="header-section">
-    <h2>Start Your Online Test</h2>
-    <p>Select class, subject & chapter</p>
-  </section>
-
-  <div class="select-box">
+  <!-- START CARD -->
+  <section id="startCard" class="card" style="max-width:760px; margin:24px auto;">
+    <h1 style="margin-bottom:6px; font-size:26px;">Start Your Online Test</h1>
+    <p style="opacity:0.9; margin-bottom:12px;">Select class, subject & chapter</p>
 
     <label>Class चुनें:</label>
-    <select id="classSelect">
+    <select id="classSelect" class="select" >
       <option value="10">Class 10</option>
       <option value="9">Class 9</option>
       <option value="8">Class 8</option>
@@ -60,37 +50,64 @@
       <option value="6">Class 6</option>
     </select>
 
-    <label>Subject चुनें:</label>
-    <select id="subjectSelect">
-      <option value="math">गणित</option>
-      <option value="science">विज्ञान</option>
+    <label style="margin-top:12px;">Subject चुनें:</label>
+    <select id="subjectSelect" class="select">
+      <option value="">Select Subject</option>
+      <option value="maths">Maths</option>
+      <option value="science" selected>Science</option>
+      <option value="sst">Social Science</option>
+      <option value="english">English</option>
+      <option value="nonhindi">Non Hindi</option>
+      <option value="urdu">Urdu</option>
+      <option value="maithili">Maithili</option>
+      <option value="sanskrit">Sanskrit</option>
     </select>
 
-    <label>Chapter चुनें:</label>
-    <select id="chapterSelect">
-      <option value="1">Chapter 1</option>
-      <option value="2">Chapter 2</option>
-      <option value="3">Chapter 3</option>
+    <label style="margin-top:12px;">Chapter चुनें:</label>
+    <select id="chapterSelect" class="select">
+      <!-- For now we offer mixed (All chapters) — later you can populate dynamically -->
+      <option value="all">All Chapters (Mixed)</option>
     </select>
 
-    <button class="start-btn" onclick="startTest()">Start Test</button>
-  </div>
+    <div style="margin-top:16px; text-align:center;">
+      <button id="startBtn" class="start-btn">Start Test</button>
+    </div>
+  </section>
+
+  <!-- EXAM CARD (hidden initially) -->
+  <section id="examCard" class="question-area" style="display:none;">
+    <div class="card">
+      <div class="progress" id="progressText">Question 1 / 80</div>
+      <div class="q-text" id="qText">Question appears here</div>
+      <div id="optsBox"></div>
+
+      <div class="navs">
+        <button id="prevBtn" class="nav-btn">Previous</button>
+        <div style="display:flex; gap:8px;">
+          <button id="markBtn" class="nav-btn" title="Mark / unmark">Mark</button>
+          <button id="nextBtn" class="nav-btn">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT CARD -->
+  <section id="resultCard" class="card" style="display:none; max-width:900px; margin:24px auto;">
+    <h2>Result Summary</h2>
+    <div id="scoreLine" style="margin:10px 0; font-weight:800;"></div>
+    <div id="resultList" class="result-list"></div>
+    <div style="margin-top:12px;">
+      <button class="print-btn" id="printBtn">Print Result</button>
+      <button class="print-btn" id="retakeBtn" style="background:#666666; margin-left:8px;">Retake</button>
+    </div>
+  </section>
 
 </main>
 
-<script>
-function startTest(){
-  const cls = document.getElementById('classSelect').value;
-  const sub = document.getElementById('subjectSelect').value;
-  const chap = document.getElementById('chapterSelect').value;
-
-  // Send parameters to exam page
-  window.location.href = `exam.html?class=${cls}&subject=${sub}&chapter=${chap}`;
-}
-</script>
-
 <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 
+<!-- SCRIPTS: banks_science must be loaded BEFORE script.js -->
+<script src="js/banks_science.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
