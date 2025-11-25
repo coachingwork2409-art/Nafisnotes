@@ -1,87 +1,185 @@
-// Menu open / close
-const sideMenu = document.getElementById('sideMenu');
-const overlay = document.getElementById('overlay');
+// js/script.js
+// Main exam logic for test.html
 
-function openMenu(){
-  if(!sideMenu || !overlay) return;
-  sideMenu.classList.add('open');
-  overlay.classList.add('show');
-  sideMenu.setAttribute('aria-hidden','false');
-}
-function closeMenu(){
-  if(!sideMenu || !overlay) return;
-  sideMenu.classList.remove('open');
-  overlay.classList.remove('show');
-  sideMenu.setAttribute('aria-hidden','true');
-}
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape') closeMenu();
-});
+(function(){
+  // DOM
+  const startCard = document.getElementById('startCard');
+  const examCard = document.getElementById('examCard');
+  const resultCard = document.getElementById('resultCard');
 
-/* ====== MCQ Test rendering (on test.html) ====== */
-const quizRoot = document.getElementById('quiz');
-const resultBox = document.getElementById('result');
-const checkBtn = document.getElementById('checkBtn');
+  const startBtn = document.getElementById('startBtn');
+  const classSelect = document.getElementById('classSelect');
+  const subjectSelect = document.getElementById('subjectSelect');
+  const chapterSelect = document.getElementById('chapterSelect');
 
-const sampleQuestions = [
-  {
-    q: "1)  √2 क्या है?",
-    options: ["Rational", "Irrational", "Integer", "Natural"],
-    answer: 1
-  },
-  {
-    q: "2)  (x+1)(x-1) का विस्तार क्या है?",
-    options: ["x^2-1", "x^2+1", "x^2-2x+1", "x^2+2x+1"],
-    answer: 0
-  },
-  {
-    q: "3)  त्रिभुज के तीनों कोणों का योग?",
-    options: ["90°", "180°", "270°", "360°"],
-    answer: 1
+  const qText = document.getElementById('qText');
+  const optsBox = document.getElementById('optsBox');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const markBtn = document.getElementById('markBtn');
+  const progressText = document.getElementById('progressText');
+
+  const scoreLine = document.getElementById('scoreLine');
+  const resultList = document.getElementById('resultList');
+  const printBtn = document.getElementById('printBtn');
+  const retakeBtn = document.getElementById('retakeBtn');
+
+  // State
+  let questions = []; // current exam questions
+  let index = 0;
+  let userAnswers = {}; // { idx: choiceIndex (0..3) }
+  let marked = {}; // flagged questions
+  let totalQuestions = 0;
+  let subjectKey = '';
+
+  // helpers
+  function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+
+  // when Start clicked
+  startBtn.addEventListener('click', () => {
+    subjectKey = subjectSelect.value;
+    if(!subjectKey){ alert('कृपया subject चुनें'); return; }
+
+    // pick question bank
+    const bank = window.questionBank && window.questionBank[subjectKey];
+    if(!bank || !Array.isArray(bank) || bank.length===0){
+      alert('इस विषय के प्रश्न उपलब्ध नहीं हैं।');
+      return;
+    }
+
+    // choose count: prefer 100 for many subjects, but use bank length if smaller.
+    // for science example we use up to 80 (as bank has 80)
+    let count = 100;
+    if(subjectKey === 'science') count = Math.min(80, bank.length);
+    else count = Math.min(100, bank.length);
+
+    // create working copy and shuffle, slice count
+    questions = shuffle(bank.slice()).slice(0, count);
+    totalQuestions = questions.length;
+    index = 0;
+    userAnswers = {};
+    marked = {};
+
+    // hide start show exam
+    startCard.style.display = 'none';
+    resultCard.style.display = 'none';
+    examCard.style.display = 'block';
+    loadQuestion();
+  });
+
+  function loadQuestion(){
+    const qObj = questions[index];
+    progressText.textContent = `Question ${index+1} / ${totalQuestions}`;
+
+    // question
+    qText.innerHTML = `<span style="opacity:0.95; margin-right:6px;">Q${index+1}.</span> ${qObj.q}`;
+
+    // options
+    optsBox.innerHTML = '';
+    qObj.options.forEach((optText, i) => {
+      const div = document.createElement('div');
+      div.className = 'opt';
+      div.setAttribute('data-choice', i);
+      div.innerHTML = `<div style="min-width:28px; font-weight:800;">${String.fromCharCode(65+i)})</div><div>${optText}</div>`;
+      // highlight if selected
+      if(userAnswers[index] === i) div.classList.add('selected');
+      div.addEventListener('click', () => {
+        // select choice
+        userAnswers[index] = i;
+        // visual
+        Array.from(optsBox.children).forEach(c => c.classList.remove('selected'));
+        div.classList.add('selected');
+      });
+      optsBox.appendChild(div);
+    });
+
+    // prev/next button text and disable states
+    prevBtn.disabled = index === 0;
+    nextBtn.textContent = (index === totalQuestions-1) ? 'Submit' : 'Next';
+
+    // toggle mark button text
+    markBtn.textContent = marked[index] ? 'Unmark' : 'Mark';
   }
-];
 
-function renderQuiz(){
-  if(!quizRoot) return;
-  quizRoot.innerHTML = '';
-  sampleQuestions.forEach((item, idx)=>{
-    const div = document.createElement('div');
-    div.className = 'quiz-q';
-    div.innerHTML = `<p style="font-weight:700;margin-bottom:6px">${item.q}</p>`;
-    item.options.forEach((opt,i)=>{
-      const id = `q${idx}_opt${i}`;
-      const html = `<label style="display:block;margin:6px 0">
-        <input type="radio" name="q${idx}" value="${i}" /> ${opt}
-      </label>`;
-      div.insertAdjacentHTML('beforeend', html);
-    });
-    quizRoot.appendChild(div);
+  prevBtn.addEventListener('click', () => {
+    if(index>0){ index--; loadQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
   });
-}
-if(quizRoot) renderQuiz();
 
-if(checkBtn){
-  checkBtn.addEventListener('click', ()=>{
-    let score=0;
-    sampleQuestions.forEach((item,idx)=>{
-      const sel = document.querySelector(`input[name="q${idx}"]:checked`);
-      if(sel && Number(sel.value) === item.answer) score++;
-    });
-    if(resultBox) resultBox.innerText = `आपका स्कोर: ${score} / ${sampleQuestions.length}`;
+  nextBtn.addEventListener('click', () => {
+    // if last and Submit
+    if(index === totalQuestions-1){
+      // Confirm submit
+      if(!confirm('क्या आप टेस्ट submit करना चाहते हैं?')) return;
+      evaluate();
+      return;
+    }
+    // allow move forward only if answer selected (you can change this behaviour)
+    // If you want to force selection before moving next, uncomment:
+    // if(typeof userAnswers[index] === 'undefined'){ alert('कृपया option चुनें'); return; }
+
+    index++;
+    loadQuestion();
+    window.scrollTo({top:0,behavior:'smooth'});
   });
-}
 
-/* Contact form (client-side fallback) */
-function submitContact(e){
-  e.preventDefault();
-  const name = document.getElementById('name')?.value || '';
-  const email = document.getElementById('email')?.value || '';
-  const message = document.getElementById('message')?.value || '';
-  if(!name || !email || !message){ alert('कृपया सभी फ़ील्ड भरें'); return; }
-  // mailto fallback
-  const subject = encodeURIComponent('Contact from website: ' + name);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-  window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-  // also show confirmation
-  alert('Thank you! Your email client will open. If not, contact using the email shown on page.');
-}
+  markBtn.addEventListener('click', () => {
+    marked[index] = !marked[index];
+    markBtn.textContent = marked[index] ? 'Unmark' : 'Mark';
+  });
+
+  // evaluate & show result
+  function evaluate(){
+    examCard.style.display = 'none';
+    resultCard.style.display = 'block';
+
+    // compute score
+    let score = 0;
+    resultList.innerHTML = '';
+
+    questions.forEach((q,i) => {
+      const user = userAnswers[i];
+      const correct = q.ans;
+      const item = document.createElement('div');
+      item.className = 'result-item';
+      // highlight correct/wrong
+      if(user === correct){
+        score++;
+        item.style.borderLeft = '6px solid #2ecc71';
+      } else {
+        item.style.borderLeft = '6px solid #e74c3c';
+      }
+      // content
+      const yourAnsText = (typeof user === 'number') ? q.options[user] : '<em>Not Answered</em>';
+      item.innerHTML = `<h4 style="margin:0 0 6px 0;">Q${i+1}. ${q.q}</h4>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="min-width:220px;"><strong>Your Answer:</strong> ${yourAnsText}</div>
+          <div style="min-width:220px;"><strong>Correct:</strong> ${q.options[correct]}</div>
+          <div style="flex:1; text-align:right;">${marked[i] ? '<span style="color:#ffd166">Marked</span>' : ''}</div>
+        </div>`;
+      resultList.appendChild(item);
+    });
+
+    scoreLine.textContent = `Score: ${score} / ${totalQuestions} • Attempted: ${Object.keys(userAnswers).length}`;
+  }
+
+  printBtn.addEventListener('click', () => {
+    window.print();
+  });
+
+  retakeBtn.addEventListener('click', () => {
+    // reset to start
+    resultCard.style.display = 'none';
+    examCard.style.display = 'none';
+    startCard.style.display = 'block';
+  });
+
+  // Keyboard: Enter -> next
+  document.addEventListener('keydown', (e) => {
+    if(examCard.style.display === 'block'){
+      if(e.key === 'Enter') nextBtn.click();
+      if(e.key === 'ArrowRight') nextBtn.click();
+      if(e.key === 'ArrowLeft') prevBtn.click();
+    }
+  });
+
+})();
