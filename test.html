@@ -1,22 +1,30 @@
 <!doctype html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Online Test - Salman Unique Notes</title>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Test - Salman Unique Notes</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.select-box { background:rgba(255,255,255,0.05); padding:20px; border-radius:12px; max-width:700px; margin:20px auto; }
+.select-box select {
+  width:100%; padding:12px; margin-top:10px;
+  background:rgba(255,255,255,0.08); color:#fff;
+  border:1px solid rgba(255,255,255,0.2); border-radius:10px;
+}
+.start-btn { margin-top:20px; width:100%; padding:12px; font-size:18px;
+  background:#007bff; border:none; border-radius:10px; font-weight:800; color:#fff; cursor:pointer; }
+</style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <header class="topbar">
-  <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
+  <div class="left"><img src="logo.png" class="site-logo"></div>
   <div class="center"><div class="site-title">Salman Unique Notes</div></div>
   <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </header>
 
-<!-- SIDE MENU -->
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 <aside id="sideMenu" class="side-menu">
   <button class="close-side" onclick="closeMenu()">✕</button>
@@ -34,169 +42,53 @@
   </nav>
 </aside>
 
-<!-- PAGE CONTENT -->
 <main class="page-content">
+
   <section class="header-section">
-    <h2>Online Test</h2>
-    <p>MCQ Test – Select options and submit.</p>
+    <h2>Start Your Online Test</h2>
+    <p>Select class, subject & chapter</p>
   </section>
 
-  <!-- QUIZ WILL LOAD HERE -->
-  <section class="cards">
-  
-<!-- ===== QUIZ UI START ===== -->
-<style>
-.quiz-card {
-  background: rgba(255,255,255,0.05);
-  padding: 16px;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
+  <div class="select-box">
 
-.quiz-option {
-  background: rgba(255,255,255,0.06);
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
+    <label>Class चुनें:</label>
+    <select id="classSelect">
+      <option value="10">Class 10</option>
+      <option value="9">Class 9</option>
+      <option value="8">Class 8</option>
+      <option value="7">Class 7</option>
+      <option value="6">Class 6</option>
+    </select>
 
-.quiz-option:hover {
-  background: rgba(255,255,255,0.12);
-}
+    <label>Subject चुनें:</label>
+    <select id="subjectSelect">
+      <option value="math">गणित</option>
+      <option value="science">विज्ञान</option>
+    </select>
 
-.selected {
-  background: rgba(0, 180, 110, 0.25) !important;
-  border: 1px solid #00d47a !important;
-}
+    <label>Chapter चुनें:</label>
+    <select id="chapterSelect">
+      <option value="1">Chapter 1</option>
+      <option value="2">Chapter 2</option>
+      <option value="3">Chapter 3</option>
+    </select>
 
-.correct {
-  background: rgba(0, 255, 100, 0.35) !important;
-  border-color: #00ff55 !important;
-}
+    <button class="start-btn" onclick="startTest()">Start Test</button>
+  </div>
 
-.wrong {
-  background: rgba(255, 0, 0, 0.35) !important;
-  border-color: #ff4444 !important;
-}
-
-.result-box {
-  margin-top: 20px;
-  padding: 16px;
-  background: rgba(0,0,0,0.45);
-  border-radius: 12px;
-  display: none;
-}
-</style>
-
-<div id="quizArea"></div>
-
-<div style="margin-top:20px; display:flex; gap:10px;">
-  <button id="submitBtn" class="btn">Submit</button>
-  <button id="resetBtn" class="btn">Reset</button>
-</div>
-
-<div id="resultBox" class="result-box">
-  <h3>Your Result</h3>
-  <p id="scoreText"></p>
-  <button onclick="window.print()" class="btn">Print Result</button>
-</div>
-
-<script>
-const quizData = [
-  {
-    q: "√2 किस प्रकार की संख्या है?",
-    options: ["Whole Number", "Rational Number", "Irrational Number", "Natural Number"],
-    ans: 2
-  },
-  {
-    q: "0 किस प्रकार की संख्या है?",
-    options: ["Whole Number", "Natural Number", "Prime Number", "Odd Number"],
-    ans: 0
-  },
-  {
-    q: "-5 क्या है?",
-    options: ["Natural Number", "Negative Integer", "Fraction", "Irrational"],
-    ans: 1
-  }
-];
-
-let userAnswers = {};
-
-function loadQuiz() {
-  const quizArea = document.getElementById("quizArea");
-  quizArea.innerHTML = "";
-
-  quizData.forEach((item, index) => {
-    let card = `
-      <div class="quiz-card">
-        <h3>Q${index + 1}. ${item.q}</h3>
-        ${item.options
-          .map(
-            (opt, i) =>
-              `<div class="quiz-option" onclick="selectOption(${index}, ${i}, this)">${String.fromCharCode(
-                65 + i
-              )}) ${opt}</div>`
-          )
-          .join("")}
-      </div>`;
-    quizArea.innerHTML += card;
-  });
-}
-
-function selectOption(qIndex, optIndex, element) {
-  userAnswers[qIndex] = optIndex;
-
-  const card = element.parentElement;
-  const allOptions = card.querySelectorAll(".quiz-option");
-
-  allOptions.forEach(opt => opt.classList.remove("selected"));
-
-  element.classList.add("selected");
-}
-
-document.getElementById("submitBtn").addEventListener("click", function () {
-  let score = 0;
-
-  document.querySelectorAll(".quiz-card").forEach((card, index) => {
-    const options = card.querySelectorAll(".quiz-option");
-    const correctIndex = quizData[index].ans;
-
-    if (userAnswers[index] === correctIndex) {
-      score++;
-    }
-
-    options.forEach((opt, i) => {
-      opt.classList.remove("selected");
-
-      if (i === correctIndex) {
-        opt.classList.add("correct");
-      } else if (userAnswers[index] === i) {
-        opt.classList.add("wrong");
-      }
-    });
-  });
-
-  document.getElementById("resultBox").style.display = "block";
-  document.getElementById("scoreText").innerText = `Score: ${score} / ${quizData.length}`;
-});
-
-document.getElementById("resetBtn").addEventListener("click", function () {
-  userAnswers = {};
-  loadQuiz();
-  document.getElementById("resultBox").style.display = "none";
-});
-
-window.onload = loadQuiz;
-</script>
-<!-- ===== QUIZ UI END ===== -->
-
-  </section>
 </main>
 
-<!-- FOOTER -->
+<script>
+function startTest(){
+  const cls = document.getElementById('classSelect').value;
+  const sub = document.getElementById('subjectSelect').value;
+  const chap = document.getElementById('chapterSelect').value;
+
+  // Send parameters to exam page
+  window.location.href = `exam.html?class=${cls}&subject=${sub}&chapter=${chap}`;
+}
+</script>
+
 <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 
 <script src="js/script.js"></script>
