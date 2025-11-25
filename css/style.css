@@ -101,23 +101,71 @@ body {
   border-top:1px solid rgba(255,255,255,0.03);
 }
 
-/* SIDE MENU */
-.overlay{
-  position:fixed; inset:0; background:rgba(0,0,0,0.3); opacity:0; visibility:hidden;
-  transition:opacity .18s ease, visibility .18s ease; z-index:1500;
-}
-.side-menu{
-  position:fixed; right:-320px; top:0; width:300px; height:100%; background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));
-  box-shadow: -10px 0 30px rgba(0,0,0,0.45);
-  padding:18px; transition:right .22s ease; z-index:1600; overflow:auto;
-}
-.side-menu.open{ right:0; }
-.overlay.show{ opacity:1; visibility:visible; }
+/* ============================================================= */
+/*                     SIDE MENU – FIXED VERSION                 */
+/* ============================================================= */
 
-.side-menu .close-side{ background:transparent; border:none; color:#fff; font-size:22px; float:right; margin-bottom:12px; cursor:pointer; }
-.side-menu nav{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
-.side-menu a{ color:#cce8ff; text-decoration:none; padding:10px 8px; border-radius:6px; font-weight:700; }
-.side-menu a:hover{ background: rgba(255,255,255,0.02); color:#fff; }
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .18s ease, visibility .18s ease;
+  z-index:1500;
+}
+.overlay.show{ 
+  opacity:1; 
+  visibility:visible;
+}
+
+.side-menu{
+  position:fixed;
+  right:-320px;
+  top:0;
+  width:300px;
+  height:100%;
+  background:#111 !important;
+  box-shadow:-10px 0 30px rgba(0,0,0,0.45);
+  padding:18px;
+  transition:right .22s ease;
+  z-index:1600;
+  overflow:auto;
+  border-left:1px solid rgba(255,255,255,0.1);
+}
+
+.side-menu.open{ right:0; }
+
+.side-menu .close-side{
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:22px;
+  float:right;
+  margin-bottom:12px;
+  cursor:pointer;
+}
+
+.side-menu nav{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+
+.side-menu a{
+  color:#fff !important;
+  text-decoration:none;
+  padding:12px 10px;
+  border-radius:6px;
+  font-weight:700;
+  background:rgba(255,255,255,0.05);
+}
+
+.side-menu a:hover{
+  background:rgba(0,150,255,0.25);
+  color:#fff;
+}
 
 /* ==========================
    SELECT YOUR CLASS SECTION
