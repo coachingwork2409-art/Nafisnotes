@@ -6,6 +6,7 @@
   <title>Online Test - Salman Unique Notes</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    /* page-specific styles */
     .card { background: rgba(255,255,255,0.03); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); margin-bottom:18px; }
     .select { width:100%; padding:12px; border-radius:10px; background:#111; color:#fff; border:1px solid rgba(255,255,255,0.06); }
     .start-btn { background: linear-gradient(90deg,#00b0ff,#0073ff); color:#fff; padding:12px 20px; border-radius:10px; border:none; font-weight:800; cursor:pointer; width:100%; max-width:320px; }
@@ -24,14 +25,13 @@
 </head>
 <body>
 
-<!-- ========= TOP HEADER ========= -->
 <header class="topbar">
   <div class="left"><img src="logo.png" alt="Logo" class="site-logo" /></div>
   <div class="center"><div class="site-title">Salman Unique Notes</div></div>
   <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </header>
 
-<!-- ========= OVERLAY + MENU (missing before) ========= -->
+<!-- ⭐⭐ FIXED SIDE MENU ADDED ⭐⭐ -->
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
 <aside id="sideMenu" class="side-menu">
@@ -50,21 +50,29 @@
   </nav>
 </aside>
 
-<!-- ========= PAGE CONTENT ========= -->
 <main class="page-content">
 
   <!-- START CARD -->
   <section id="startCard" class="card" style="max-width:760px; margin:24px auto;">
     <h1 style="margin-bottom:6px; font-size:26px;">Start Your Online Test</h1>
+    <p style="opacity:0.9; margin-bottom:12px;">Select class, subject & chapter</p>
 
     <label>Class चुनें:</label>
-    <select id="classSelect" class="select">
+    <select id="classSelect" class="select" >
       <option value="10">Class 10</option>
     </select>
 
     <label style="margin-top:12px;">Subject चुनें:</label>
     <select id="subjectSelect" class="select">
+      <option value="">Select Subject</option>
+      <option value="maths">Maths</option>
       <option value="science" selected>Science</option>
+      <option value="sst">Social Science</option>
+      <option value="english">English</option>
+      <option value="nonhindi">Non Hindi</option>
+      <option value="urdu">Urdu</option>
+      <option value="maithili">Maithili</option>
+      <option value="sanskrit">Sanskrit</option>
     </select>
 
     <label style="margin-top:12px;">Chapter चुनें:</label>
@@ -80,8 +88,9 @@
   <!-- EXAM CARD -->
   <section id="examCard" class="question-area" style="display:none;">
     <div class="card">
-      <div class="progress" id="progressText"></div>
-      <div class="q-text" id="qText"></div>
+      <div class="progress" id="progressText">Question 1 / 80</div>
+      <div class="q-text" id="qText">Question here</div>
+
       <div id="optsBox"></div>
 
       <div class="navs">
@@ -94,32 +103,22 @@
     </div>
   </section>
 
-  <!-- RESULT -->
+  <!-- RESULT CARD -->
   <section id="resultCard" class="card" style="display:none; max-width:900px; margin:24px auto;">
     <h2>Result Summary</h2>
-    <div id="scoreLine"></div>
+    <div id="scoreLine" style="margin:10px 0; font-weight:800;"></div>
     <div id="resultList" class="result-list"></div>
-    <button class="print-btn" id="printBtn">Print</button>
-    <button class="print-btn" id="retakeBtn" style="background:#666;">Retake</button>
+    <div style="margin-top:12px;">
+      <button class="print-btn" id="printBtn">Print</button>
+      <button class="print-btn" id="retakeBtn" style="background:#666;margin-left:8px;">Retake</button>
+    </div>
   </section>
 
 </main>
 
 <footer class="footer">© 2025 Salman Unique Notes | All Rights Reserved</footer>
 
-<!-- ========= MENU JS ========= -->
-<script>
-function openMenu(){
-  document.getElementById("sideMenu").classList.add("open");
-  document.getElementById("overlay").classList.add("show");
-}
-function closeMenu(){
-  document.getElementById("sideMenu").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
-}
-</script>
-
-<!-- ========= TEST SCRIPTS ========= -->
+<!-- SCRIPTS -->
 <script src="js/banks_science.js"></script>
 <script src="js/script.js"></script>
 
