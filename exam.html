@@ -7,26 +7,90 @@
 <link rel="stylesheet" href="css/style.css" />
 
 <style>
-/* Basic UI (keeps theme consistent with your site) */
-.start-screen, .exam-screen, .result-screen { padding:20px; max-width:980px; margin:0 auto; color:#fff; }
-.start-screen { text-align:center; padding-top:40px; }
-.start-btn { background:#007bff; padding:12px 22px; border-radius:10px; color:#fff; font-weight:800; border:none; cursor:pointer; margin-top:14px; }
-.question-box { background: rgba(255,255,255,0.03); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); margin-top:16px; }
-.option { padding:12px; margin-top:10px; border-radius:10px; cursor:pointer; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.02); }
-.option:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-.selected { background: rgba(0,200,120,0.28) !important; border:1px solid #00f090 !important; }
-.nav-buttons { display:flex; justify-content:space-between; margin-top:20px; gap:10px; }
-.nav-btn { padding:12px 18px; border-radius:10px; border:none; background:#00b0ff; color:#fff; font-weight:800; cursor:pointer; }
-.nav-btn[disabled] { opacity:0.45; pointer-events:none; }
-.progress { font-weight:800; margin-bottom:8px; }
+/* START PAGE */
+.start-box {
+  text-align:center;
+  padding:40px 20px;
+}
+.start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; }
+.start-box h2 { opacity:0.9; margin-bottom:20px; }
 
-/* result */
-.result-card { padding:12px; margin-bottom:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.03); }
-.correct { background: rgba(0,255,100,0.30) !important; border:1px solid #00ff6a !important; }
-.wrong { background: rgba(255,40,40,0.30) !important; border:1px solid #ff4c4c !important; }
-.print-btn { margin-top:12px; padding:12px 18px; background:#00b0ff; color:#fff; border:none; border-radius:10px; cursor:pointer; font-weight:800; }
+.select-box {
+  max-width:400px;
+  margin:20px auto;
+  text-align:left;
+}
+.select-box label {
+  font-weight:700;
+  font-size:18px;
+}
+.select-box select {
+  width:100%;
+  margin-top:6px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  background:#fff;
+  font-size:16px;
+  font-weight:600;
+}
 
-/* print */
+.start-btn {
+  background:#007bff; padding:12px 22px; border-radius:10px;
+  color:#fff; font-weight:800; cursor:pointer; border:none; margin-top:20px;
+}
+
+/* EXAM PAGE */
+.exam-box { display:none; }
+.question-card {
+  background:rgba(255,255,255,0.06);
+  padding:20px; border-radius:15px;
+  border:1px solid rgba(255,255,255,0.1);
+  margin-bottom:20px;
+}
+.question-text {
+  font-size:20px;
+  font-weight:800;
+  color:#4db8ff;
+  margin-bottom:12px;
+}
+.option {
+  background:rgba(255,255,255,0.06);
+  padding:10px; border-radius:10px; cursor:pointer;
+  margin-top:10px; transition:.2s;
+  color:#fff;
+}
+.option:hover { background:rgba(255,255,255,0.12); }
+.selected { background:rgba(0,200,120,0.35)!important; border:1px solid #00f090; }
+
+/* NAVIGATION BUTTONS */
+.nav-buttons {
+  display:flex; justify-content:space-between; margin-top:20px;
+}
+.nav-btn {
+  padding:10px 18px; background:#007bff; border:none;
+  border-radius:10px; color:#fff; font-weight:800; cursor:pointer;
+}
+.nav-btn[disabled] { opacity:0.4; pointer-events:none; }
+
+/* RESULT PAGE */
+.result-page { display:none; }
+.result-card {
+  background:rgba(255,255,255,0.06);
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.correct { background:rgba(0,255,100,0.3)!important; border:1px solid #00ff6a; }
+.wrong { background:rgba(255,0,0,0.35)!important; border:1px solid #ff4c4c; }
+.print-btn {
+  background:#00b0ff; padding:12px 22px; border:none;
+  color:#fff; font-weight:800; border-radius:10px; cursor:pointer;
+  margin-top:20px;
+}
+
+/* PRINT */
 @media print {
   body * { visibility:hidden; }
   #printArea, #printArea * { visibility:visible; }
@@ -34,28 +98,54 @@
 }
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header class="topbar">
-  <div class="left"><img src="logo.png" class="site-logo" alt="logo"></div>
+  <div class="left"><img src="logo.png" class="site-logo" /></div>
   <div class="center"><div class="site-title">Salman Unique Notes</div></div>
   <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </header>
 
 <!-- START SCREEN -->
-<main class="page-content start-screen" id="startScreen">
+<main class="page-content" id="startScreen">
+<div class="start-box">
   <h1>Start Your Online Test</h1>
-  <h2 id="titleBar">Class 10 — Social Science (Mixed)</h2>
-  <p>कुल प्रश्न: <strong>100</strong> • हर प्रश्न पर एक विकल्प चुनें • Last पर Submit करें</p>
+
+  <div class="select-box">
+    <label>क्लास चुनें:</label>
+    <select id="classSelect">
+      <option value="10">Class 10</option>
+    </select>
+  </div>
+
+  <div class="select-box">
+    <label>सब्जेक्ट चुनें:</label>
+    <select id="subjectSelect">
+      <option value="">Select Subject</option>
+      <option value="maths">Maths</option>
+      <option value="science">Science</option>
+      <option value="sst">Social Science</option>
+      <option value="english">English</option>
+      <option value="nonhindi">Non-Hindi</option>
+      <option value="urdu">Urdu</option>
+      <option value="maithili">Maithili</option>
+      <option value="sanskrit">Sanskrit</option>
+    </select>
+  </div>
+
   <button class="start-btn" onclick="startExam()">Start Test</button>
+</div>
 </main>
 
 <!-- EXAM SCREEN -->
-<main class="page-content exam-screen" id="examScreen" style="display:none;">
-  <div class="progress" id="progressText">Question 1 / 100</div>
+<main class="page-content exam-box" id="examScreen">
 
-  <div class="question-box">
-    <h3 id="questionText">प्रश्न यहाँ आएगा</h3>
+  <h2 id="progressText">Question 1 / 100</h2>
+
+  <div class="question-card">
+    <div class="question-text" id="questionText"></div>
     <div id="optionsBox"></div>
   </div>
 
@@ -63,194 +153,73 @@
     <button class="nav-btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
     <button class="nav-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
   </div>
+
 </main>
 
 <!-- RESULT SCREEN -->
-<main class="page-content result-screen" id="resultScreen" style="display:none;">
+<main class="page-content result-page" id="resultScreen">
   <h2>Result Summary</h2>
+
   <div id="printArea"></div>
-  <button class="print-btn" onclick="window.print()">Print Result</button>
+
+  <button class="print-btn" onclick="window.print()">Print</button>
 </main>
 
+<!-- SUBJECT WISE DATA (BANKS) -->
+<script src="data/banks.js"></script>
+
 <script>
-/* ============================
-   QUESTIONS: 100 MIXED (History + Geography + Civics)
-   Each object: { q: "question", options: [...], ans: index (0-based) }
-   (I used the MCQs we prepared earlier and combined to 100)
-   ============================ */
-
-const questions = [
-/* --------- HISTORY (30) --------- */
-/* 1 */ { q:"फ्रांस में राष्ट्रवाद सबसे पहले किस घटना से उभरा?", options:["औद्योगिक क्रांति","फ्रांसीसी क्रांति","रूसी क्रांति","प्रथम विश्व युद्ध"], ans:1 },
-/* 2 */ { q:"जर्मनी के एकीकरण का नायक किसे माना जाता है?", options:["गैरीबाल्डी","मेटर्निक","बिस्मार्क","नेपोलियन"], ans:2 },
-/* 3 */ { q:"इटली के एकीकरण में किसने महत्वपूर्ण भूमिका निभाई?", options:["गैरीबाल्डी","हिटलर","स्टालिन","मुसोलिनी"], ans:0 },
-/* 4 */ { q:"“राष्ट्र-राज्य” किसको कहते हैं?", options:["जिसमें राजा सर्वोच्च हो","जिसमें जनसत्ता सर्वोच्च हो","जिसमें धर्म सर्वोच्च हो","जिसमें सेना सर्वोच्च हो"], ans:1 },
-/* 5 */ { q:"स्लाव आंदोलन किस क्षेत्र से जुड़ा था?", options:["ब्रिटेन","रूस","बाल्कन क्षेत्र","फ्रांस"], ans:2 },
-
-/* 6 */ { q:"बंग-भंग किस वर्ष हुआ था?", options:["1903","1905","1907","1910"], ans:1 },
-/* 7 */ { q:"स्वदेशी आंदोलन का मुख्य उद्देश्य था—", options:["विदेशी शासन को समर्थन","स्वदेशी वस्तुओं का बहिष्कार","भारतीय सेना मज़बूत करना","ब्रिटिश व्यापार बढ़ाना"], ans:1 },
-/* 8 */ { q:"असहयोग आंदोलन कब शुरू हुआ था?", options:["1919","1920","1922","1930"], ans:1 },
-/* 9 */ { q:"दांडी यात्रा किसके विरोध में की गई थी?", options:["कृषि कर","जल कर","नमक कर","शिक्षा कर"], ans:2 },
-/*10 */ { q:"भगत सिंह किस संगठन से जुड़े थे?", options:["कांग्रेस","मुस्लिम लीग","HSRA","स्वराज पार्टी"], ans:2 },
-
-/*11 */ { q:"'सिल्क रूट' किस वस्तु के व्यापार के लिए प्रसिद्ध था?", options:["चावल","रेशम","चाय","कोयला"], ans:1 },
-/*12 */ { q:"उन्नीसवीं सदी में विश्व की सबसे बड़ी अर्थव्यवस्था कौन थी?", options:["ब्रिटेन","चीन","जापान","रूस"], ans:1 },
-/*13 */ { q:"कोलंबस ने किस नए महाद्वीप की खोज की?", options:["एशिया","यूरोप","अमेरिका","अफ्रीका"], ans:2 },
-/*14 */ { q:"'कोलंबियन एक्सचेंज' किससे संबंधित है?", options:["सैन्य क्रांति","जैविक आदान–प्रदान","औद्योगिक व्यापार","आर्थिक युद्ध"], ans:1 },
-/*15 */ { q:"प्लांटेशन कृषि मुख्य रूप से कहाँ हुई?", options:["यूरोप","अमेरिका","एशिया","रूस"], ans:1 },
-
-/*16 */ { q:"औद्योगिक क्रांति की शुरुआत कहाँ हुई?", options:["फ्रांस","जर्मनी","ब्रिटेन","जापान"], ans:2 },
-/*17 */ { q:"किस मशीन ने वस्त्र उद्योग में क्रांति लाई?", options:["स्टीम इंजन","रेल इंजन","स्पिनिंग जेनी","टेलीग्राफ"], ans:2 },
-/*18 */ { q:"कोयला और लौह उद्योग किसके विकास के लिए महत्वपूर्ण थे?", options:["खाद्य उत्पादन","परिवहन","मशीन उद्योग","शिक्षा"], ans:2 },
-/*19 */ { q:"‘मैनचेस्टर’ किसके लिए प्रसिद्ध था?", options:["जहाज","वस्त्र उद्योग","रबर","हथियार"], ans:1 },
-/*20 */ { q:"बच्चों से मजदूरी किस आयु से प्रतिबंधित की गई?", options:["7 वर्ष","8 वर्ष","9 वर्ष","12 वर्ष"], ans:2 },
-
-/*21 */ { q:"सबसे पहले कागज का आविष्कार कहाँ हुआ?", options:["भारत","चीन","जापान","मिस्र"], ans:1 },
-/*22 */ { q:"मूवेबल टाइप प्रिंटिंग प्रेस किसने बनाई?", options:["कोलंबस","गुटेनबर्ग","आइंस्टाइन","न्यूटन"], ans:1 },
-/*23 */ { q:"भारत में पहला समाचार पत्र कहाँ शुरू हुआ?", options:["दिल्ली","कोलकाता","पटना","मुंबई"], ans:1 },
-/*24 */ { q:"उपन्यासों के प्रसार ने किसको बढ़ावा दिया?", options:["विदेश नीति","राष्ट्रीय चेतना","साम्राज्यवाद","दास प्रथा"], ans:1 },
-/*25 */ { q:"‘समाचार दर्पण’ किस भाषा में था?", options:["उर्दू","हिंदी","मराठी","बांग्ला"], ans:3 },
-
-/*26 */ { q:"मैनचेस्टर किसके लिए प्रसिद्ध था?", options:["लोहा","कपड़ा उद्योग","दवा","शिक्षा"], ans:1 },
-/*27 */ { q:"19वीं सदी में मजदूरों की मुख्य समस्या क्या थी?", options:["अधिक वेतन","कम रोजगार","अत्यधिक कार्य घंटे","सरकारी समय"], ans:2 },
-/*28 */ { q:"मजदूर संगठनों के गठन का उद्देश्य—", options:["देश विभाजन","प्रशासन व्यवस्था","मजदूर अधिकार","विदेशी शासन"], ans:2 },
-/*29 */ { q:"ट्रेड यूनियन क्या है?", options:["सरकारी विभाग","मजदूरों का संगठन","अदालत","राजनीतिक पार्टी"], ans:1 },
-/*30 */ { q:"उद्योगों में सबसे पहले किसे रोजगार मिलता था?", options:["डॉक्टर","महिलाएँ","बच्चे","अभियंता"], ans:2 },
-
-/* --------- GEOGRAPHY (30) --------- */
-/*31*/ { q:"संसाधन किसे कहते हैं?", options:["मनुष्य द्वारा बनाया गया पदार्थ","वह वस्तु जिससे उपयोगिता प्राप्त हो","केवल प्राकृतिक चीजें","केवल मशीन"], ans:1 },
-/*32*/ { q:"मृदा संरक्षण का मुख्य तरीका क्या है?", options:["जंगल काटना","अधिक सिंचाई","समोच्च रेखा पर हल चलाना","ढलान पर बहाव"], ans:2 },
-/*33*/ { q:"काली मिट्टी किस फसल के लिए उपयुक्त है?", options:["गेहूँ","कपास","चावल","गन्ना"], ans:1 },
-/*34*/ { q:"भारत में भूमि कटाव का मुख्य कारण—", options:["वर्षा","पेड़ काटना","उद्योग","सड़के"], ans:1 },
-/*35*/ { q:"संसाधनों का गैर-वैज्ञानिक उपयोग कहलाता है—", options:["संरक्षण","दोहन/अतिदोहन","विकास","योजना"], ans:1 },
-
-/*36*/ { q:"भारत में बाढ़ का मुख्य कारण है—", options:["कम वर्षा","मिट्टी कटाव","अत्यधिक वर्षा","पर्वत"], ans:2 },
-/*37*/ { q:"बाँध का उपयोग किसके लिए होता है?", options:["यात्रा","जल-संग्रह","खेल","शिकार"], ans:1 },
-/*38*/ { q:"पनबिजली में ऊर्जा किससे बनती है?", options:["सूर्य से","कोयले से","पानी गिरने की शक्ति से","हवा"], ans:2 },
-/*39*/ { q:"भारत का सबसे लंबा बाँध कौन सा है?", options:["हीराकुंड बांध","टिहरी बांध","नर्मदा बाँध","भाखड़ा नांगल"], ans:0 },
-/*40*/ { q:"वर्षा जल संचयन का अर्थ है—", options:["समुद्र का पानी संग्रह","वर्षा के पानी का संग्रहण","नदियों का पानी बहाना","पानी बर्बाद करना"], ans:1 },
-
-/*41*/ { q:"भारत में सिंचाई का सबसे बड़ा स्रोत—", options:["तालाब","नहर","भूजल","झील"], ans:2 },
-/*42*/ { q:"बहुउद्देशीय परियोजना का उदाहरण—", options:["पोखरा बांध","हीराकुंड बांध","झील","नलकूप"], ans:1 },
-/*43*/ { q:"जल संरक्षण के लिए कौन-सी पद्धति उपयोगी है?", options:["स्टेप खेती","जल-संचयन","विस्फोट","सड़क निर्माण"], ans:1 },
-/*44*/ { q:"जल संकट का कारण—", options:["अधिक वर्षा","जल प्रदूषण","वायु शुद्धि","पर्यटन"], ans:1 },
-/*45*/ { q:"राजस्थान में पानी का पारंपरिक स्रोत—", options:["जमुन","टांका","पोखर","ट्यूबवेल"], ans:1 },
-
-/*46*/ { q:"भारत की मुख्य कृषि पद्धति कौन सी है?", options:["मिश्रित कृषि","स्थानांतरण कृषि","जीविका कृषि","व्यावसायिक कृषि"], ans:2 },
-/*47*/ { q:"धान उत्पादन किस राज्य में अधिक होता है?", options:["पंजाब","बिहार","पश्चिम बंगाल","गुजरात"], ans:2 },
-/*48*/ { q:"रबी फसल कब बोई जाती है?", options:["जून–जुलाई","अक्टूबर–नवंबर","मार्च–अप्रैल","मई–जून"], ans:1 },
-/*49*/ { q:"भारत में गन्ना उत्पादन का सबसे बड़ा राज्य—", options:["महाराष्ट्र","कर्नाटक","बिहार","पंजाब"], ans:0 },
-/*50*/ { q:"हरी क्रांति किससे संबंधित है?", options:["पशुपालन","बीज और उर्वरक","कपड़ा उद्योग","व्यापार"], ans:1 },
-
-/*51*/ { q:"हेमेटाइट किसका प्रमुख स्रोत है?", options:["चूना","लोहे का अयस्क","सोना","चाँदी"], ans:1 },
-/*52*/ { q:"कोयले का सबसे बड़ा उत्पादक राज्य—", options:["राजस्थान","कर्नाटक","झारखंड","पंजाब"], ans:2 },
-/*53*/ { q:"अक्षय ऊर्जा का उदाहरण है—", options:["कोयला","पेट्रोलियम","सूर्य ऊर्जा","प्राकृतिक गैस"], ans:2 },
-/*54*/ { q:"कौन सा धातु 'ऊर्जा धातु' कहा जाता है?", options:["सोना","चाँदी","यूरेनियम","तांबा"], ans:2 },
-/*55*/ { q:"भू-तापीय ऊर्जा कहाँ से प्राप्त होती है?", options:["सूर्य","पृथ्वी के अंदर","हवा","वर्षा"], ans:1 },
-
-/*56*/ { q:"उद्योग का अर्थ है—", options:["खेती","व्यापार","वस्तुओं का उत्पादन","बैंकिंग"], ans:2 },
-/*57*/ { q:"कपास उद्योग कहाँ प्रसिद्ध है?", options:["दिल्ली","कोलकाता","मुंबई","लखनऊ"], ans:2 },
-/*58*/ { q:"कुटीर उद्योग का उदाहरण—", options:["इस्पात","सीमेंट","हाथकरघा","रसायन"], ans:2 },
-/*59*/ { q:"जूट उद्योग अधिकतर कहाँ है?", options:["गुजरात","कर्नाटक","पश्चिम बंगाल","तमिलनाडु"], ans:2 },
-/*60*/ { q:"सबसे पुराना उद्योग कौन सा है?", options:["सीमेंट","इस्पात","वस्त्र उद्योग","रबर"], ans:2 },
-
-/* --------- CIVICS (40) --------- */
-/*61*/ { q:"शक्ति-साझाकरण क्यों आवश्यक है?", options:["तानाशाही बढ़ाने के लिए","देश को कमजोर करने के लिए","संघर्ष रोकने व स्थिरता के लिए","सैनिक नियंत्रण के लिए"], ans:2 },
-/*62*/ { q:"बेल्जियम में किस समुदाय की संख्या अधिक थी?", options:["जर्मन","फ्रेंच","डच","भारतीय"], ans:1 },
-/*63*/ { q:"श्रीलंका में किस भाषा को आधिकारिक भाषा घोषित किया गया?", options:["तमिल","संस्कृत","सिंहला","अंग्रेज़ी"], ans:2 },
-/*64*/ { q:"शक्ति-साझाकरण का एक रूप है—", options:["सत्ता का केंद्रीकरण","जनरल वोटिंग","सामुदायिक प्रतिनिधित्व","पंचायत हटाना"], ans:2 },
-/*65*/ { q:"लोकतंत्र में शक्ति-साझाकरण से—", options:["हिंसा बढ़ती है","तानाशाही बढ़ती है","सामंजस्य व स्थिरता बढ़ती है","युद्ध होता है"], ans:2 },
-
-/*66*/ { q:"भारत किस प्रकार का देश है?", options:["तानाशाही","एकात्मक राज्य","संघीय संरचना","सैन्य शासन"], ans:2 },
-/*67*/ { q:"समवर्ती सूची किस स्तर से संबंधित है?", options:["केन्द्र सरकार","राज्य सरकार","दोनों","पंचायत"], ans:2 },
-/*68*/ { q:"भारतीय संघ में कितने स्तर की सरकार होती है?", options:["एक","दो","तीन","चार"], ans:2 },
-/*69*/ { q:"भाषा नीति किसका उदाहरण है?", options:["राजनीतिक सुधार","सांस्कृतिक शक्ति-साझाकरण","न्यायपालिका नियंत्रण","व्यापार नीति"], ans:1 },
-/*70*/ { q:"पंचायती राज किस वर्ष लागू किया गया?", options:["1950","1976","1992","2001"], ans:2 },
-
-/*71*/ { q:"विविधता का अर्थ है—", options:["सब एक जैसे","सब अलग–अलग","सब एक धर्म","सब एक भाषा"], ans:1 },
-/*72*/ { q:"सामाजिक भेदभाव कैसे उत्पन्न होता है?", options:["सम्मान से","समानता से","असमानता से","स्वतंत्रता से"], ans:2 },
-/*73*/ { q:"बहुलतावाद का अर्थ—", options:["एक मत","अनेकता","एक भाषा","एक विचार"], ans:1 },
-/*74*/ { q:"लोकतंत्र में संघर्षों का समाधान कैसे होता है?", options:["हिंसा से","बातचीत व समझौते से","धन से","सेना से"], ans:1 },
-/*75*/ { q:"अमेरिका में अश्वेत आंदोलन किसके खिलाफ था?", options:["शासन","कर प्रणाली","नस्लीय भेदभाव","शिक्षा"], ans:2 },
-
-/*76*/ { q:"लैंगिक विभाजन किस आधार पर होता है?", options:["धर्म","रंग","पुरुष–महिला","भाषा"], ans:2 },
-/*77*/ { q:"भारतीय संविधान में किसे धर्म की मान्यता मिली है?", options:["हिंदू","मुस्लिम","सभी धर्म","कोई नहीं"], ans:2 },
-/*78*/ { q:"जाति प्रणाली किस पर आधारित थी?", options:["व्यवसाय","धन","रंग","शिक्षा"], ans:0 },
-/*79*/ { q:"महिला सशक्तिकरण का उद्देश्य—", options:["महिलाओं को वोट से रोकना","महिलाओं को अधिकार व समानता देना","पुरुष प्रधानता बढ़ाना","समाज को बाँटना"], ans:1 },
-/*80*/ { q:"“सांप्रदायिकता” का अर्थ—", options:["देशभक्ति","धार्मिक कट्टरता","आधुनिकता","शिक्षा"], ans:1 },
-
-/*81*/ { q:"‘लोकतंत्र’ का अर्थ है—", options:["धन का शासन","जनता का शासन","सेना का शासन","राजा का शासन"], ans:1 },
-/*82*/ { q:"नेपाल में जन-आंदोलन क्यों हुआ?", options:["राजा हटाने के लिए","सेना मजबूत करने के लिए","ब्रिटिश शासन के लिए","कर बढ़ाने के लिए"], ans:0 },
-/*83*/ { q:"NGO का full form क्या है?", options:["National Group Office","New Government Office","Non-Government Organization","National Guard Operation"], ans:2 },
-/*84*/ { q:"आंदोलन कब आवश्यक होते हैं?", options:["जब जनता खुश हो","जब सरकार गलत निर्णय ले","जब संसद छुट्टी पर हो","जब चुनाव चल रहे हों"], ans:1 },
-/*85*/ { q:"जन-भागीदारी का अर्थ—", options:["जनता की अनुपस्थिति","जनता की भागीदारी","संसद की शक्ति","केवल धनी लोगों की भागीदारी"], ans:1 },
-
-/*86*/ { q:"भारत में बहुदलीय प्रणाली है—", options:["हाँ","नहीं","कुछ राज्यों में","केवल केंद्र में"], ans:0 },
-/*87*/ { q:"राष्ट्रीय पार्टी बनने की शर्त—", options:["5% वोट","2% मत और 4 राज्यों में पहचान","20% वोट","कोई नियम नहीं"], ans:1 },
-/*88*/ { q:"भारत की सबसे पुरानी पार्टी—", options:["भाजपा","कांग्रेस","बसपा","जदयू"], ans:1 },
-/*89*/ { q:"पार्टी चिन्ह किसके द्वारा जारी होता है?", options:["पंचायत","विधानसभा","चुनाव आयोग","राष्ट्रपति"], ans:2 },
-/*90*/ { q:"लोकतंत्र का एक प्रमुख लाभ—", options:["तानाशाही","समानता","गरीबी","भ्रष्टाचार"], ans:1 },
-
-/*91*/ { q:"लोकतंत्र में सरकार किसके प्रति जवाबदेह होती है?", options:["किसी के प्रति नहीं","जनता के प्रति","सेना के प्रति","धनी लोगों के प्रति"], ans:1 },
-/*92*/ { q:"विकास का अर्थ—", options:["पीछे रहना","खराब स्थिति","सुधार और प्रगति","भ्रष्टाचार"], ans:2 },
-/*93*/ { q:"सामाजिक विविधता को लोकतंत्र क्या देता है?", options:["खत्म कर देता है","सम्मान देता है","दंड देता है","गायब कर देता है"], ans:1 },
-/*94*/ { q:"लोकतंत्र की सबसे बड़ी चुनौती है—", options:["पारदर्शिता","तानाशाही","समानता","जन-भागीदारी"], ans:1 },
-/*95*/ { q:"चुनाव सुधार क्यों ज़रूरी हैं?", options:["भ्रष्टाचार रोकने के लिए","वोट बढ़ाने के लिए","सेना मजबूत करने के लिए","अर्थव्यवस्था बढ़ाने के लिए"], ans:0 },
-
-/*96*/ { q:"आपातकाल कब लागू हुआ?", options:["1975","1950","1980","1999"], ans:0 },
-/*97*/ { q:"लोकतंत्र को मजबूत करने का तरीका—", options:["तानाशाह बनाना","जनता की भागीदारी","न्यायपालिका खत्म करना","संसद बंद करना"], ans:1 },
-/*98*/ { q:"लोकतंत्र में भ्रष्टाचार के बारे में क्या कहा जा सकता है?", options:["असंभव","कम होता है","हो सकता है","बढ़ता ही रहता है"], ans:2 },
-/*99*/ { q:"लोकतंत्र में सरकार का मुख्य कर्तव्य क्या है?", options:["देश पर राज करना","जनता की भलाई करना","सेना तैयार रखना","खुद का धन बढ़ाना"], ans:1 },
-/*100*/ { q:"लोकतंत्र में कानून का पालन किसे करना चाहिए?", options:["केवल सरकार","सभी नागरिक","केवल अमीर","केवल अधिकारी"], ans:1 }
-
-]; // end questions array
-
-/* ============================
-   STATE VARIABLES
-   ============================ */
+let questions = [];
 let index = 0;
-let answers = {}; // store user's selected option index per question
+let answers = {};
 
-/* ============================
-   START / LOAD / NAV FUNCTIONS
-   ============================ */
+function startExam() {
+  let subject = document.getElementById("subjectSelect").value;
+  if (subject === "") {
+    alert("कृपया एक सब्जेक्ट चुनें!");
+    return;
+  }
 
-function startExam(){
-  document.getElementById('startScreen').style.display = 'none';
-  document.getElementById('examScreen').style.display = 'block';
+  questions = BANKS[subject]; // load subject question bank
+  index = 0;
+  answers = {};
+
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("examScreen").style.display = "block";
+
   loadQuestion();
 }
 
-function loadQuestion(){
+function loadQuestion() {
   const q = questions[index];
-  document.getElementById('progressText').innerText = `Question ${index+1} / ${questions.length}`;
-  document.getElementById('questionText').innerText = q.q;
 
-  // render options
-  let html = '';
+  document.getElementById("progressText").innerText =
+    `Question ${index + 1} / ${questions.length}`;
+
+  document.getElementById("questionText").innerText = q.q;
+
+  let opts = "";
   q.options.forEach((opt, i) => {
-    const sel = (answers[index] === i) ? 'selected' : '';
-    html += `<div class="option ${sel}" onclick="selectOption(${i}, this)">${String.fromCharCode(65+i)}) ${opt}</div>`;
+    const selected = answers[index] === i ? "selected" : "";
+    opts += `<div class="option ${selected}" onclick="selectOption(${i}, this)">${opt}</div>`;
   });
-  document.getElementById('optionsBox').innerHTML = html;
 
-  // prev/next button state
-  document.getElementById('prevBtn').disabled = index === 0;
-  document.getElementById('nextBtn').innerText = (index === questions.length - 1) ? 'Submit' : 'Next';
+  document.getElementById("optionsBox").innerHTML = opts;
+
+  document.getElementById("prevBtn").disabled = index === 0;
+  document.getElementById("nextBtn").innerText =
+    index === questions.length - 1 ? "Submit" : "Next";
 }
 
-function selectOption(optIndex, el){
-  // save answer
-  answers[index] = optIndex;
+function selectOption(i, el) {
+  answers[index] = i;
 
-  // mark selected visually
-  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
+  document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
+  el.classList.add("selected");
 }
 
-function nextQuestion(){
-  if(index === questions.length - 1){
-    // submit
+function nextQuestion() {
+  if (index === questions.length - 1) {
     showResult();
     return;
   }
@@ -258,50 +227,39 @@ function nextQuestion(){
   loadQuestion();
 }
 
-function prevQuestion(){
-  if(index > 0){
+function prevQuestion() {
+  if (index > 0) {
     index--;
     loadQuestion();
   }
 }
 
-/* ============================
-   SHOW RESULT & PRINT
-   ============================ */
-function showResult(){
-  document.getElementById('examScreen').style.display = 'none';
-  document.getElementById('resultScreen').style.display = 'block';
+function showResult() {
+  document.getElementById("examScreen").style.display = "none";
+  document.getElementById("resultScreen").style.display = "block";
 
-  let html = '';
+  let html = "";
   questions.forEach((q, i) => {
-    const user = answers[i];
-    const correct = q.ans;
-    const cls = (user === correct) ? 'correct' : 'wrong';
-    html += `<div class="result-card ${cls}">
-      <h3>Q${i+1}. ${q.q}</h3>
-      <p><strong>Your Answer:</strong> ${ (typeof user === 'number') ? q.options[user] : '—' }</p>
-      <p><strong>Correct Answer:</strong> ${q.options[correct]}</p>
-    </div>`;
+    let userAns = answers[i];
+    let correctAns = q.ans;
+
+    let className =
+      userAns === correctAns ? "correct" : "wrong";
+
+    html += `
+      <div class="result-card ${className}">
+        <h3>Q${i + 1}. ${q.q}</h3>
+        <p><strong>Your Answer:</strong> ${q.options[userAns] || "—"}</p>
+        <p><strong>Correct Answer:</strong> ${q.options[correctAns]}</p>
+      </div>
+    `;
   });
 
-  document.getElementById('printArea').innerHTML = html;
+  document.getElementById("printArea").innerHTML = html;
 }
-
-/* ============================
-   init: if URL params used, customize title (optional)
-   ============================ */
-(function init(){
-  // optional: pick class/subject from URL if provided
-  try{
-    const params = new URLSearchParams(window.location.search);
-    const cls = params.get('class') || '10';
-    const sub = params.get('subject') || 'Social Science';
-    const chap = params.get('chapter') || '';
-    document.getElementById('titleBar').innerText = `Class ${cls} – ${sub} ${chap ? '– Chapter '+chap : ''}`;
-  }catch(e){}
-})();
 </script>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>
