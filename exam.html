@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Online Exam - Salman Unique Notes</title>
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+
+/* ============ START SCREEN ============ */
+.start-screen {
+  text-align:center;
+  padding:40px 20px;
+}
+.start-screen h1 { font-size:28px; font-weight:800; margin-bottom:10px; }
+.start-screen h2 { opacity:0.9; margin-bottom:20px; }
+.start-btn {
+  background:#007bff; padding:12px 22px; border-radius:10px; color:#fff;
+  font-weight:800; cursor:pointer; border:none; margin-top:20px;
+}
+
+/* ============ EXAM SCREEN ============ */
+.exam-screen { display:none; }
+
+.question-box {
+  background:rgba(255,255,255,0.06);
+  padding:20px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.option {
+  background:rgba(255,255,255,0.06);
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+.option:hover { background:rgba(255,255,255,0.12); }
+
+.selected {
+  background:rgba(0,200,120,0.35) !important;
+  border:1px solid #00ff90 !important;
+}
+
+/* ============ NAV BUTTONS ============ */
+.nav-buttons {
+  display:flex;
+  justify-content:space-between;
+  margin-top:25px;
+}
+.nav-btn {
+  padding:12px 20px;
+  background:#007bff; color:#fff;
+  border:none; border-radius:10px;
+  font-weight:800; cursor:pointer;
+}
+.nav-btn[disabled] { opacity:0.4; pointer-events:none; }
+
+/* ============ RESULT SCREEN ============ */
+.result-screen { display:none; }
+
+.result-card {
+  background:rgba(255,255,255,0.06);
+  border-radius:12px;
+  padding:15px;
+  border:1px solid rgba(255,255,255,0.1);
+  margin-bottom:18px;
+}
+
+.correct {
+  background:rgba(0,255,100,0.35) !important;
+  border:1px solid #00ff6a !important;
+}
+
+.wrong {
+  background:rgba(255,40,40,0.35) !important;
+  border:1px solid #ff4c4c !important;
+}
+
+.print-btn {
+  background:#00b0ff; padding:12px 22px;
+  color:#fff; border:none; border-radius:10px;
+  font-weight:800; margin-top:20px; cursor:pointer;
+}
+
+/* PRINT MODE */
+@media print {
+  body * { visibility:hidden; }
+  #printArea, #printArea * { visibility:visible; }
+  #printArea { position:absolute; left:0; top:0; width:100%; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="left"><img src="logo.png" class="site-logo" /></div>
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
+  <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
+</header>
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<aside id="sideMenu" class="side-menu">
+  <button class="close-side" onclick="closeMenu()">✕</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="test.html">Online Test</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</aside>
+
+<!-- ======================================================
+                    START SCREEN
+====================================================== -->
+<main class="page-content start-screen" id="startScreen">
+  <h1>Start Your Online Test</h1>
+  <h2 id="titleBar">Loading...</h2>
+  <button class="start-btn" onclick="startExam()">Start Test</button>
+</main>
+
+<!-- ======================================================
+                    EXAM SCREEN
+====================================================== -->
+<main class="page-content exam-screen" id="examScreen">
+
+  <h2 id="progressText">Question 1 / 1</h2>
+
+  <div class="question-box">
+    <h3 id="questionText"></h3>
+    <div id="optionsBox"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
+    <button class="nav-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+  </div>
+
+</main>
+
+<!-- ======================================================
+                     RESULT SCREEN
+====================================================== -->
+<main class="page-content result-screen" id="resultScreen">
+
+  <h2>Result Summary</h2>
+
+  <div id="printArea"></div>
+
+  <button class="print-btn" onclick="window.print()">Print</button>
+
+</main>
+
+
+<script>
+/* ------------------------------------------------------
+   GET CLASS/SUB/CHAPTER FROM URL
+------------------------------------------------------ */
+const url = new URL(window.location.href);
+const cls = url.searchParams.get("class");
+const sub = url.searchParams.get("subject");
+const chap = url.searchParams.get("chapter");
+
+document.getElementById("titleBar").innerText =
+  `Class ${cls} – ${sub.toUpperCase()} – Chapter ${chap}`;
+
+/* ------------------------------------------------------
+   QUESTIONS (EXAMPLE) – आप बाद में बदल देंगे
+------------------------------------------------------ */
+const questions = [
+  {
+    q: "√2 किस प्रकार की संख्या है?",
+    options: ["पूर्णांक", "परिमेय संख्या", "अपरिमेय संख्या", "प्राकृतिक संख्या"],
+    ans: 2
+  },
+  {
+    q: "0 किस प्रकार की संख्या है?",
+    options: ["पूर्णांक (Whole Number)", "प्राकृतिक संख्या", "अभाज्य संख्या", "विषम संख्या"],
+    ans: 0
+  },
+  {
+    q: "-5 क्या है?",
+    options: ["प्राकृतिक संख्या", "ऋणात्मक पूर्णांक", "भिन्न", "अपरिमेय"],
+    ans: 1
+  }
+];
+
+/* ------------------------------------------------------
+   STATES
+------------------------------------------------------ */
+let index = 0;
+let answers = {};
+
+/* ------------------------------------------------------
+   START EXAM
+------------------------------------------------------ */
+function startExam(){
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("examScreen").style.display = "block";
+  loadQuestion();
+}
+
+/* ------------------------------------------------------
+   LOAD QUESTION
+------------------------------------------------------ */
+function loadQuestion(){
+  
+  const q = questions[index];
+
+  document.getElementById("progressText").innerText =
+    `Question ${index+1} / ${questions.length}`;
+
+  document.getElementById("questionText").innerText = q.q;
+
+  let html = "";
+  q.options.forEach((opt,i)=>{
+    const selected = answers[index] === i ? "selected" : "";
+    html += `<div class="option ${selected}" onclick="selectOption(${i}, this)">${opt}</div>`;
+  });
+  document.getElementById("optionsBox").innerHTML = html;
+
+  // Nav buttons
+  document.getElementById("prevBtn").disabled = index === 0;
+  document.getElementById("nextBtn").innerText =
+    index === questions.length - 1 ? "Submit" : "Next";
+}
+
+/* ------------------------------------------------------
+   SELECT OPTION
+------------------------------------------------------ */
+function selectOption(i, el){
+  answers[index] = i;
+  document.querySelectorAll(".option").forEach(O=>O.classList.remove("selected"));
+  el.classList.add("selected");
+}
+
+/* ------------------------------------------------------
+   NEXT / PREVIOUS
+------------------------------------------------------ */
+function nextQuestion(){
+  if(index === questions.length - 1){
+    showResult();
+    return;
+  }
+  index++;
+  loadQuestion();
+}
+function prevQuestion(){
+  if(index > 0){
+    index--;
+    loadQuestion();
+  }
+}
+
+/* ------------------------------------------------------
+   RESULT PAGE
+------------------------------------------------------ */
+function showResult(){
+  document.getElementById("examScreen").style.display = "none";
+  document.getElementById("resultScreen").style.display = "block";
+
+  let html = "";
+
+  questions.forEach((q,i)=>{
+    let userAns = answers[i];
+    let correctAns = q.ans;
+    let className = userAns === correctAns ? "correct" : "wrong";
+
+    html += `
+      <div class="result-card ${className}">
+        <h3>Q${i+1}. ${q.q}</h3>
+        <p><strong>Your Answer:</strong> ${q.options[userAns] || "—"}</p>
+        <p><strong>Correct Answer:</strong> ${q.options[correctAns]}</p>
+      </div>
+    `;
+  });
+
+  document.getElementById("printArea").innerHTML = html;
+}
+
+</script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
