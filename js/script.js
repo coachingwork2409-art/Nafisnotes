@@ -213,3 +213,11 @@ function closeMenu(){
   menu.classList.remove("open");
   overlay.classList.remove("show");
 }
+const box = document.getElementById('startCard');
+
+box.addEventListener('touchstart', () => {
+    box.classList.add('hover-touch');
+    setTimeout(() => {
+        box.classList.remove('hover-touch');
+    }, 1200);
+});
