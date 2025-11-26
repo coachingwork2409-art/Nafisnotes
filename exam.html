@@ -1,253 +1,234 @@
 <!doctype html>
-<html lang="hi">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Online Exam - Salman Unique Notes</title>
 
-<link rel="stylesheet" href="css/style.css" />
+<html lang="hi">  
+<head>  
+<meta charset="utf-8" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<title>Online Exam - Salman Unique Notes</title>  <link rel="stylesheet" href="css/style.css" />  <style>  
+  
+/* ---------------- BASIC ---------------- */  
+.start-box { text-align:center; padding:40px 20px; }  
+.start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; color:#dff6ff; }  
+  
+/* -------------------------------------------------  
+   ⭐🔥 FIRE GLOW START-CARD (Final Updated Version)  
+--------------------------------------------------*/  
+#startCard {  
+  max-width: 450px;  
+  margin: 35px auto;  
+  padding: 30px;  
+  border-radius: 25px;  
+  
+  background: rgba(0, 20, 40, 0.45);  
+  backdrop-filter: blur(12px);  
+  
+  border: 1px solid rgba(0, 180, 255, 0.45);  
+  
+  box-shadow:  
+    0 0 12px rgba(0,150,255,0.35),  
+    inset 0 0 18px rgba(0,150,255,0.25);  
+  
+  transition: 0.35s ease;  
+}  
+  
+#startCard:hover {  
+  background: rgba(0, 30, 60, 0.60);  
+  border: 1px solid rgba(0, 200, 255, 0.8);  
+  
+  box-shadow:  
+    0 0 28px rgba(0,180,255,0.9),  
+    0 0 50px rgba(0,180,255,0.6),  
+    inset 0 0 22px rgba(0,200,255,0.45);  
+  
+  transform: translateY(-5px) scale(1.03);  
+}  
+  
+/* Label */  
+#startCard label {  
+  font-size: 17px;  
+  font-weight: 700;  
+  color: #caf3ff;  
+}  
+  
+/* Dropdowns */  
+#startCard select {  
+  width: 100%;  
+  padding: 14px;  
+  margin-top: 6px;  
+  margin-bottom:12px;  
+  
+  background: rgba(255,255,255,0.12);  
+  border-radius: 12px;  
+  color: #fff;  
+  
+  border: 1px solid rgba(255,255,255,0.22);  
+  font-size: 16px;  
+}  
+  
+/* -------------------------------------------------  
+   ⭐🔥 FIRE BUTTON   
+--------------------------------------------------*/  
+#startCard .start-btn {  
+  width: 100%;  
+  margin-top: 18px;  
+  padding: 14px;  
+  font-size: 17px;  
+  border-radius: 12px;  
+  
+  background: linear-gradient(90deg, #008CFF, #00DDFF);  
+  border: none;  
+  color: #fff;  
+  font-weight: 800;  
+  letter-spacing: 0.7px;  
+  
+  box-shadow: 0 0 18px rgba(0,200,255,0.55);  
+  cursor: pointer;  
+  transition: 0.3s ease;  
+}  
+  
+/* FIRE glow hover */  
+#startCard .start-btn:hover {  
+  background: linear-gradient(90deg, #00B7FF, #00F0FF);  
+  
+  box-shadow:  
+    0 0 28px rgba(0,220,255,0.9),  
+    0 0 52px rgba(0,220,255,0.55);  
+  
+  transform: scale(1.05);  
+}  
+  
+/* ---------------- EXAM ---------------- */  
+.exam-box { display:none; }  
+.question-card { background:rgba(255,255,255,0.06); padding:20px; border-radius:15px; margin-bottom:20px; }  
+.question-text { font-size:20px; font-weight:800; color:#4db8ff; margin-bottom:12px; }  
+.option { padding:10px; border-radius:10px; margin-top:10px; background:rgba(255,255,255,0.1); cursor:pointer; }  
+.option.selected { background:rgba(0,200,120,0.35); border:1px solid #00f090; }  
+  
+.nav-buttons { display:flex; justify-content:space-between; margin-top:20px; }  
+.nav-btn { padding:10px 18px; background:#007bff; color:#fff; border-radius:10px; font-weight:800; cursor:pointer; }  
+  
+.result-page { display:none; }  
+.result-card { background:rgba(255,255,255,0.08); padding:15px; border-radius:12px; margin-bottom:15px; }  
+.correct { background:rgba(0,255,100,0.3); }  
+.wrong { background:rgba(255,0,0,0.35); }  
+  
+</style>  </head>  
+<body>  <!-- HEADER -->  <header class="topbar">  
+  <div class="left"><img src="logo.png" class="site-logo" /></div>  
+  <div class="center"><div class="site-title">Salman Unique Notes</div></div>  
+  <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>  
+</header>  <!-- MENU -->  <div id="overlay" class="overlay" onclick="closeMenu()"></div>  <aside id="sideMenu" class="side-menu">  
+  <button class="close-side" onclick="closeMenu()">✕</button>  
+  <nav>  
+    <a href="index.html">Home</a>  
+    <a href="class6.html">Class 6</a>  
+    <a href="class7.html">Class 7</a>  
+    <a href="class8.html">Class 8</a>  
+    <a href="class9.html">Class 9</a>  
+    <a href="class10.html">Class 10</a>  
+    <a href="notes.html">Notes</a>  
+    <a href="test.html">Online Test</a>  
+    <a href="about.html">About</a>  
+    <a href="contact.html">Contact</a>  
+  </nav>  
+</aside>  <!-- ⭐ START SCREEN -->  <main class="page-content" id="startScreen">  
+  <div class="start-box">  
+    <h1>Start Your Online Test</h1>  <div id="startCard">  
 
-<style>
-/* BASIC */
-.start-box { text-align:center; padding:40px 20px; }
-.start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; color:#dff6ff; }
+  <div class="select-box">  
+    <label>Subject चुनें:</label>  
+    <select id="subjectSelect">  
+      <option value="">Select Subject</option>  
+      <option value="science">Science</option>  
+    </select>  
+  </div>  
 
-/* FIRE GLOW START CARD */
-#startCard {
-  max-width: 450px;
-  margin: 35px auto;
-  padding: 30px;
-  border-radius: 25px;
+  <button class="start-btn" onclick="startExam()">Start Test</button>  
 
-  background: rgba(0, 20, 40, 0.45);
-  backdrop-filter: blur(12px);
+</div>
 
-  border: 1px solid rgba(0, 180, 255, 0.45);
-
-  box-shadow:
-    0 0 12px rgba(0,150,255,0.35),
-    inset 0 0 18px rgba(0,150,255,0.25);
-
-  transition: 0.35s ease;
-}
-#startCard:hover {
-  background: rgba(0, 30, 60, 0.60);
-  border: 1px solid rgba(0, 200, 255, 0.8);
-
-  box-shadow:
-    0 0 28px rgba(0,180,255,0.9),
-    0 0 52px rgba(0,180,255,0.6),
-    inset 0 0 22px rgba(0,200,255,0.45);
-
-  transform: translateY(-5px) scale(1.03);
-}
-
-/* Label */
-#startCard label {
-  font-size: 17px;
-  font-weight: 700;
-  color: #caf3ff;
-}
-
-/* Dropdown */
-#startCard select {
-  width: 100%;
-  padding: 14px;
-  margin-top: 6px;
-  margin-bottom:12px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 12px;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.22);
-}
-
-/* Button Fire Glow */
-#startCard .start-btn {
-  width: 100%;
-  margin-top: 18px;
-  padding: 14px;
-  font-size: 17px;
-  border-radius: 12px;
-  background: linear-gradient(90deg, #008CFF, #00DDFF);
-  border: none;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: 0.7px;
-  box-shadow: 0 0 18px rgba(0,200,255,0.55);
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-#startCard .start-btn:hover {
-  background: linear-gradient(90deg, #00B7FF, #00F0FF);
-  box-shadow:
-    0 0 28px rgba(0,220,255,0.9),
-    0 0 52px rgba(0,220,255,0.55);
-  transform: scale(1.05);
-}
-
-/* EXAM */
-.exam-box { display:none; }
-.question-card { background:rgba(255,255,255,0.06); padding:20px; border-radius:15px; margin-bottom:20px; }
-.question-text { font-size:20px; font-weight:800; color:#4db8ff; margin-bottom:12px; }
-.option { padding:10px; border-radius:10px; margin-top:10px; background:rgba(255,255,255,0.1); cursor:pointer; }
-.option.selected { background:rgba(0,200,120,0.35); border:1px solid #00f090; }
-
-.nav-buttons { display:flex; justify-content:space-between; margin-top:20px; }
-.nav-btn { padding:10px 18px; background:#007bff; color:#fff; border-radius:10px; font-weight:800; cursor:pointer; }
-
-.result-page { display:none; }
-.result-card { background:rgba(255,255,255,0.08); padding:15px; border-radius:12px; margin-bottom:15px; }
-.correct { background:rgba(0,255,100,0.3); }
-.wrong { background:rgba(255,0,0,0.35); }
-
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<header class="topbar">
-  <div class="left">
-    <a href="index.html">
-      <img src="logo.png" class="site-logo" />
-    </a>
-  </div>
-  <div class="center"><div class="site-title">Salman Unique Notes</div></div>
-  <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
-</header>
-
-<!-- MENU -->
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
-
-<aside id="sideMenu" class="side-menu">
-  <button class="close-side" onclick="closeMenu()">✕</button>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="class6.html">Class 6</a>
-    <a href="class7.html">Class 7</a>
-    <a href="class8.html">Class 8</a>
-    <a href="class9.html">Class 9</a>
-    <a href="class10.html">Class 10</a>
-    <a href="notes.html">Notes</a>
-    <a href="test.html">Online Test</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</aside>
-
-<!-- START SCREEN -->
-<main class="page-content" id="startScreen">
-  <div class="start-box">
-    <h1>Start Your Online Test</h1>
-
-    <div id="startCard">
-      <div class="select-box">
-        <label>Subject चुनें:</label>
-        <select id="subjectSelect">
-          <option value="">Select Subject</option>
-          <option value="science">Science</option>
-        </select>
-      </div>
-
-      <button class="start-btn" onclick="startExam()">Start Test</button>
-    </div>
-  </div>
-</main>
-
-<!-- EXAM SCREEN -->
-<main class="page-content exam-box" id="examScreen">
-  <h2 id="progressText"></h2>
-
-  <div class="question-card">
-    <div class="question-text" id="questionText"></div>
-    <div id="optionsBox"></div>
-  </div>
-
-  <div class="nav-buttons">
-    <button class="nav-btn" onclick="prevQuestion()">Previous</button>
-    <button class="nav-btn" onclick="nextQuestion()">Next</button>
-  </div>
-</main>
-
-<!-- RESULT SCREEN -->
-<main class="page-content result-page" id="resultScreen">
-  <h2>Result Summary</h2>
-  <div id="printArea"></div>
-</main>
-
-<script src="js/banks_science.js"></script>
-
-<script>
-let questions=[], index=0, answers={};
-
-function startExam(){
-  let subject=document.getElementById("subjectSelect").value;
-  if(!subject){ alert("सही subject चुनें!"); return; }
-
-  questions=window.questionBank[subject];
-  index=0; answers={};
-
-  document.getElementById("startScreen").style.display="none";
-  document.getElementById("examScreen").style.display="block";
-  loadQuestion();
-}
-
-function loadQuestion(){
-  const q=questions[index];
-  document.getElementById("progressText").innerText=`Question ${index+1} / ${questions.length}`;
-  document.getElementById("questionText").innerText=q.q;
-
-  let html="";
-  q.options.forEach((opt,i)=>{
-    let cls=(answers[index]===i)?"selected":"";
-    html+=`<div class="option ${cls}" onclick="selectOption(${i},this)">${opt}</div>`;
-  });
-  document.getElementById("optionsBox").innerHTML=html;
-}
-
-function selectOption(i,el){
-  answers[index]=i;
-  document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
-  el.classList.add("selected");
-}
-
-function nextQuestion(){
-  if(index===questions.length-1) return showResult();
-  index++; loadQuestion();
-}
-
-function prevQuestion(){
-  if(index>0){ index--; loadQuestion(); }
-}
-
-function showResult(){
-  document.getElementById("examScreen").style.display="none";
-  document.getElementById("resultScreen").style.display="block";
-
-  let html="";
-  questions.forEach((q,i)=>{
-    let ua=answers[i], ca=q.ans;
-    let cls=(ua===ca)?"correct":"wrong";
-
-    html+=`
-      <div class="result-card ${cls}">
-        <h3>Q${i+1}. ${q.q}</h3>
-        <p>Your Answer: ${q.options[ua] || "—"}</p>
-        <p>Correct Answer: ${q.options[ca]}</p>
-      </div>`;
-  });
-
-  document.getElementById("printArea").innerHTML=html;
-}
-
-function openMenu(){
-  document.getElementById("sideMenu").classList.add("open");
-  document.getElementById("overlay").classList.add("show");
-}
-function closeMenu(){
-  document.getElementById("sideMenu").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
-}
-</script>
-
-</body>
+  </div>  
+</main>  <!-- EXAM SCREEN -->  <main class="page-content exam-box" id="examScreen">  
+  <h2 id="progressText"></h2>    <div class="question-card">  
+    <div class="question-text" id="questionText"></div>  
+    <div id="optionsBox"></div>  
+  </div>    <div class="nav-buttons">  
+    <button class="nav-btn" onclick="prevQuestion()">Previous</button>  
+    <button class="nav-btn" onclick="nextQuestion()">Next</button>  
+  </div>  
+</main>  <!-- RESULT SCREEN -->  <main class="page-content result-page" id="resultScreen">  
+  <h2>Result Summary</h2>  
+  <div id="printArea"></div>  
+</main>  <!-- QUESTION BANK -->  <script src="js/banks_science.js"></script>  <script>  
+let questions=[], index=0, answers={};  
+  
+function startExam(){  
+  let subject=document.getElementById("subjectSelect").value;  
+  if(!subject){ alert("सही subject चुनें!"); return; }  
+  
+  questions=window.questionBank[subject];  
+  index=0; answers={};  
+  
+  document.getElementById("startScreen").style.display="none";  
+  document.getElementById("examScreen").style.display="block";  
+  loadQuestion();  
+}  
+  
+function loadQuestion(){  
+  const q=questions[index];  
+  document.getElementById("progressText").innerText=`Question ${index+1} / ${questions.length}`;  
+  document.getElementById("questionText").innerText=q.q;  
+  
+  let html="";  
+  q.options.forEach((opt,i)=>{  
+    let cls=(answers[index]===i)?"selected":"";  
+    html+=`<div class="option ${cls}" onclick="selectOption(${i},this)">${opt}</div>`;  
+  });  
+  document.getElementById("optionsBox").innerHTML=html;  
+}  
+  
+function selectOption(i,el){  
+  answers[index]=i;  
+  document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));  
+  el.classList.add("selected");  
+}  
+  
+function nextQuestion(){  
+  if(index===questions.length-1) return showResult();  
+  index++; loadQuestion();  
+}  
+  
+function prevQuestion(){  
+  if(index>0){ index--; loadQuestion(); }  
+}  
+  
+function showResult(){  
+  document.getElementById("examScreen").style.display="none";  
+  document.getElementById("resultScreen").style.display="block";  
+  
+  let html="";  
+  questions.forEach((q,i)=>{  
+    let ua=answers[i], ca=q.ans;  
+    let cls=(ua===ca)?"correct":"wrong";  
+  
+    html+=`  
+      <div class="result-card ${cls}">  
+        <h3>Q${i+1}. ${q.q}</h3>  
+        <p>Your Answer: ${q.options[ua] || "—"}</p>  
+        <p>Correct Answer: ${q.options[ca]}</p>  
+      </div>`;  
+  });  
+  
+  document.getElementById("printArea").innerHTML=html;  
+}  
+  
+function openMenu(){  
+  document.getElementById("sideMenu").classList.add("open");  
+  document.getElementById("overlay").classList.add("show");  
+}  
+function closeMenu(){  
+  document.getElementById("sideMenu").classList.remove("open");  
+  document.getElementById("overlay").classList.remove("show");  
+}  
+</script>  </body>  
 </html>
