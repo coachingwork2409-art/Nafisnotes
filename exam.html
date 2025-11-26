@@ -8,34 +8,68 @@
 <link rel="stylesheet" href="css/style.css" />
 
 <style>
-/* BASIC STYLES (same as before) */
+
+/* ---------------- BASIC ---------------- */
 .start-box { text-align:center; padding:40px 20px; }
 .start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; }
 
-/* ⭐ NEW hover card box */
+/* ---------------- ⭐ NEW START-CARD ---------------- */
 #startCard {
   max-width:420px;
   margin:25px auto;
-  padding:25px;
-  background:rgba(255,255,255,0.04);
-  border-radius:20px;
-  transition:0.3s;
+  padding:28px;
+  background:rgba(255,255,255,0.05);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(6px);
+  transition:0.35s ease;
 }
 #startCard:hover {
-  background:rgba(0,180,255,0.18);   /* sky-blue hover */
-  box-shadow:0 0 20px rgba(0,180,255,0.4);
+  background:rgba(0,150,255,0.18);
+  box-shadow:0 0 25px rgba(0,170,255,0.45);
+  transform:translateY(-3px);
 }
 
-/* Old selectors */
-.select-box { width:100%; margin:15px 0; text-align:left; }
-.select-box select { width:100%; padding:12px; border-radius:10px; }
-
-.start-btn { 
-  background:#007bff; padding:12px 20px; 
-  border-radius:10px; color:#fff; 
-  font-weight:800; cursor:pointer; width:100%;
+/* LABEL STYLE */
+#startCard label {
+  font-size:16px;
+  font-weight:700;
+  color:#d7f3ff;
 }
 
+/* DROPDOWN STYLE */
+#startCard select {
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  font-size:16px;
+}
+
+/* ---------------- ⭐ NEW BUTTON STYLE ---------------- */
+#startCard .start-btn {
+  width:100%;
+  background:#00aaff;
+  padding:13px;
+  border-radius:12px;
+  margin-top:18px;
+  color:white;
+  font-weight:800;
+  letter-spacing:.5px;
+  cursor:pointer;
+  border:none;
+  transition:0.3s;
+}
+#startCard .start-btn:hover {
+  background:#14c4ff;
+  box-shadow:0 0 15px rgba(0,200,255,.6);
+  transform:scale(1.03);
+}
+
+
+/* ---------------- EXAM ---------------- */
 .exam-box { display:none; }
 .question-card { background:rgba(255,255,255,0.06); padding:20px; border-radius:15px; margin-bottom:20px; }
 .question-text { font-size:20px; font-weight:800; color:#4db8ff; margin-bottom:12px; }
@@ -49,9 +83,9 @@
 .result-card { background:rgba(255,255,255,0.06); padding:15px; border-radius:12px; margin-bottom:15px; }
 .correct { background:rgba(0,255,100,0.3); }
 .wrong { background:rgba(255,0,0,0.35); }
+
 </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
@@ -80,14 +114,12 @@
   </nav>
 </aside>
 
-<!-- ⭐ UPDATED START SCREEN (with startCard box) -->
+<!-- ⭐ START SCREEN -->
 <main class="page-content" id="startScreen">
   <div class="start-box">
     <h1>Start Your Online Test</h1>
 
-    <!-- ⭐ NEW WRAPPER BOX WITH HOVER EFFECT -->
     <div id="startCard">
-
       <div class="select-box">
         <label>Subject चुनें:</label>
         <select id="subjectSelect">
@@ -97,23 +129,22 @@
       </div>
 
       <button class="start-btn" onclick="startExam()">Start Test</button>
-
     </div>
+
   </div>
 </main>
 
 <!-- EXAM SCREEN -->
 <main class="page-content exam-box" id="examScreen">
   <h2 id="progressText"></h2>
-
   <div class="question-card">
     <div class="question-text" id="questionText"></div>
     <div id="optionsBox"></div>
   </div>
 
   <div class="nav-buttons">
-    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
-    <button class="nav-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button class="nav-btn" onclick="prevQuestion()">Previous</button>
+    <button class="nav-btn" onclick="nextQuestion()">Next</button>
   </div>
 </main>
 
@@ -123,68 +154,63 @@
   <div id="printArea"></div>
 </main>
 
-<!-- LOAD SCIENCE BANK -->
+<!-- QUESTION BANK -->
 <script src="js/banks_science.js"></script>
 
 <script>
-let questions = [];
-let index = 0;
-let answers = {};
+let questions=[], index=0, answers={};
 
-function startExam() {
-  let subject = document.getElementById("subjectSelect").value;
-  if(subject === "") { alert("सही subject चुनें!"); return; }
+function startExam(){
+  let subject=document.getElementById("subjectSelect").value;
+  if(!subject){ alert("सही subject चुनें!"); return; }
 
-  questions = window.questionBank[subject];
-  index = 0; answers = {};
+  questions=window.questionBank[subject];
+  index=0; answers={};
 
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("examScreen").style.display = "block";
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("examScreen").style.display="block";
 
   loadQuestion();
 }
 
-function loadQuestion() {
-  const q = questions[index];
+function loadQuestion(){
+  const q=questions[index];
+  document.getElementById("progressText").innerText=`Question ${index+1} / ${questions.length}`;
+  document.getElementById("questionText").innerText=q.q;
 
-  document.getElementById("progressText").innerText = 
-    `Question ${index+1} / ${questions.length}`;
-
-  document.getElementById("questionText").innerText = q.q;
-
-  let html = "";
+  let html="";
   q.options.forEach((opt,i)=>{
-    let sel = answers[index] === i ? "selected" : "";
-    html += `<div class="option ${sel}" onclick="selectOption(${i},this)">${opt}</div>`;
+    let cls=(answers[index]===i)?"selected":"";
+    html+=`<div class="option ${cls}" onclick="selectOption(${i},this)">${opt}</div>`;
   });
-  document.getElementById("optionsBox").innerHTML = html;
+  document.getElementById("optionsBox").innerHTML=html;
 }
 
 function selectOption(i,el){
-  answers[index] = i;
+  answers[index]=i;
   document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
   el.classList.add("selected");
 }
 
 function nextQuestion(){
-  if(index === questions.length-1) return showResult();
+  if(index===questions.length-1) return showResult();
   index++; loadQuestion();
 }
 
 function prevQuestion(){
-  if(index > 0){ index--; loadQuestion(); }
+  if(index>0){ index--; loadQuestion(); }
 }
 
 function showResult(){
-  document.getElementById("examScreen").style.display = "none";
-  document.getElementById("resultScreen").style.display = "block";
+  document.getElementById("examScreen").style.display="none";
+  document.getElementById("resultScreen").style.display="block";
 
-  let html = "";
+  let html="";
   questions.forEach((q,i)=>{
-    let ua = answers[i];
-    let ca = q.ans;
-    let cls = ua===ca ? "correct" : "wrong";
-    html += `
+    let ua=answers[i], ca=q.ans;
+    let cls=(ua===ca)?"correct":"wrong";
+
+    html+=`
       <div class="result-card ${cls}">
         <h3>Q${i+1}. ${q.q}</h3>
         <p>Your Answer: ${q.options[ua] || "—"}</p>
@@ -192,10 +218,9 @@ function showResult(){
       </div>`;
   });
 
-  document.getElementById("printArea").innerHTML = html;
+  document.getElementById("printArea").innerHTML=html;
 }
 
-/* MENU FUNCTIONS */
 function openMenu(){
   document.getElementById("sideMenu").classList.add("open");
   document.getElementById("overlay").classList.add("show");
