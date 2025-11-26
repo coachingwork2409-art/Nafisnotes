@@ -11,9 +11,30 @@
 /* BASIC STYLES (same as before) */
 .start-box { text-align:center; padding:40px 20px; }
 .start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; }
-.select-box { max-width:400px; margin:20px auto; text-align:left; }
-.select-box select { width:100%; padding:10px; border-radius:10px; }
-.start-btn { background:#007bff; padding:12px 20px; border-radius:10px; color:#fff; font-weight:800; cursor:pointer; }
+
+/* ⭐ NEW hover card box */
+#startCard {
+  max-width:420px;
+  margin:25px auto;
+  padding:25px;
+  background:rgba(255,255,255,0.04);
+  border-radius:20px;
+  transition:0.3s;
+}
+#startCard:hover {
+  background:rgba(0,180,255,0.18);   /* sky-blue hover */
+  box-shadow:0 0 20px rgba(0,180,255,0.4);
+}
+
+/* Old selectors */
+.select-box { width:100%; margin:15px 0; text-align:left; }
+.select-box select { width:100%; padding:12px; border-radius:10px; }
+
+.start-btn { 
+  background:#007bff; padding:12px 20px; 
+  border-radius:10px; color:#fff; 
+  font-weight:800; cursor:pointer; width:100%;
+}
 
 .exam-box { display:none; }
 .question-card { background:rgba(255,255,255,0.06); padding:20px; border-radius:15px; margin-bottom:20px; }
@@ -59,20 +80,25 @@
   </nav>
 </aside>
 
-<!-- START SCREEN -->
+<!-- ⭐ UPDATED START SCREEN (with startCard box) -->
 <main class="page-content" id="startScreen">
   <div class="start-box">
     <h1>Start Your Online Test</h1>
 
-    <div class="select-box">
-      <label>Subject चुनें:</label>
-      <select id="subjectSelect">
-        <option value="">Select Subject</option>
-        <option value="science">Science</option>
-      </select>
-    </div>
+    <!-- ⭐ NEW WRAPPER BOX WITH HOVER EFFECT -->
+    <div id="startCard">
 
-    <button class="start-btn" onclick="startExam()">Start Test</button>
+      <div class="select-box">
+        <label>Subject चुनें:</label>
+        <select id="subjectSelect">
+          <option value="">Select Subject</option>
+          <option value="science">Science</option>
+        </select>
+      </div>
+
+      <button class="start-btn" onclick="startExam()">Start Test</button>
+
+    </div>
   </div>
 </main>
 
@@ -109,7 +135,7 @@ function startExam() {
   let subject = document.getElementById("subjectSelect").value;
   if(subject === "") { alert("सही subject चुनें!"); return; }
 
-  questions = window.questionBank[subject]; // FIXED
+  questions = window.questionBank[subject];
   index = 0; answers = {};
 
   document.getElementById("startScreen").style.display = "none";
