@@ -1,56 +1,101 @@
 <!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-<html lang="hi">  
-<head>  
-  <meta charset="utf-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <title>Salman Unique Notes</title>  
-  <link rel="stylesheet" href="css/style.css" />  
-</head>  
-<body>    <!-- Notice Board -->    <marquee style="background-color: yellow; color: black; font-weight: bold; font-size: 20px; padding: 10px;">  
-    New Batch Class 10th ke liye shuru ho gaya hai! Jaldi join karein.  
-  </marquee>    <!-- Topbar -->    <header class="topbar">  
-    <div class="left">  
-      <img src="logo.png" alt="Logo" class="site-logo" />  
-    </div>  <div class="center">  
-  <div class="site-title">Salman Unique Notes</div>  
-</div>  
+<body>
 
-<div class="right">  
-  <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>  
-</div>
+  <!-- Notice Board -->
+  <marquee style="background-color: yellow; color: black; font-weight: bold; font-size: 20px; padding: 10px;">
+    New Batch Class 10th ke liye shuru ho gaya hai! Jaldi join karein.
+  </marquee>
 
-  </header>    <!-- Overlay + Side menu -->    <div id="overlay" class="overlay" onclick="closeMenu()"></div>    <aside id="sideMenu" class="side-menu" aria-hidden="true">  
-    <button class="close-side" onclick="closeMenu()">✕</button>  
-    <nav>  
-      <a href="index.html">Home</a>  
-      <a href="class6.html">Class 6</a>  
-      <a href="class7.html">Class 7</a>  
-      <a href="class8.html">Class 8</a>  
-      <a href="class9.html">Class 9</a>  
-      <a href="class10.html">Class 10</a>  
-      <a href="notes.html">Notes</a>  
-      <a href="test.html">Online Test</a>  
-      <a href="about.html">About</a>  
-      <a href="contact.html">Contact</a>  
-    </nav>  
-  </aside>    <!-- HERO -->    <main class="hero">  
-    <h1>सपने आपके, संकल्प हमारा</h1>  
-    <p class="subtitle">नफीस सर के साथ, अब टॉपर बनने का नंबर तुम्हारा।</p>  
-  </main>    <!-- ===== SELECT YOUR CLASS (INSERTED) ===== -->    <section class="class-section" aria-labelledby="choose-class" style="margin-top: 18px;">  
-    <h2 id="choose-class">Select Your Class</h2>  <div class="class-grid">  
-  <a href="class6.html"  class="class-box" aria-label="Class 6th">Class 6th</a>  
-  <a href="class7.html"  class="class-box" aria-label="Class 7th">Class 7th</a>  
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <a href="index.html">
+        <img src="logo.png" alt="Logo" class="site-logo" />
+      </a>
+    </div>
 
-  <a href="class8.html"  class="class-box" aria-label="Class 8th">Class 8th</a>  
-  <a href="class9.html"  class="class-box" aria-label="Class 9th">Class 9th</a>  
+    <div class="center">
+      <div class="site-title">Salman Unique Notes</div>
+    </div>
 
-  <a href="class10.html" class="class-box" aria-label="Class 10th">Class 10th</a>  
-  <!-- agar future me aur classes chahiye to yaha add kar den -->  
-</div>
+    <div class="right">
+      <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    </div>
+  </header>
 
-  </section>  
-  <!-- ===== END SELECT YOUR CLASS ===== -->    <footer class="footer">  
-    © 2025 Salman Unique Notes | All Rights Reserved  
-  </footer>    <script src="js/script.js"></script>  </body>  
+  <!-- Overlay + Side menu -->
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <button class="close-side" onclick="closeMenu()">✕</button>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="class6.html">Class 6</a>
+      <a href="class7.html">Class 7</a>
+      <a href="class8.html">Class 8</a>
+      <a href="class9.html">Class 9</a>
+      <a href="class10.html">Class 10</a>
+      <a href="notes.html">Notes</a>
+      <a href="test.html">Online Test</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- HERO -->
+  <main class="hero">
+    <h1>सपने आपके, संकल्प हमारा</h1>
+    <p class="subtitle">नफीस सर के साथ, अब टॉपर बनने का नंबर तुम्हारा।</p>
+  </main>
+
+  <!-- ⭐ PREMIUM SELECT YOUR CLASS SECTION ⭐ -->
+  <section class="class-section" aria-labelledby="choose-class" style="margin-top: 18px;">
+    <h2 id="choose-class">Select Your Class</h2>
+
+    <div class="class-grid">
+
+      <a href="class6.html" class="class-card">
+        <img src="img/class6.png" alt="Class 6">
+        <span>Class 6</span>
+      </a>
+
+      <a href="class7.html" class="class-card">
+        <img src="img/class7.png" alt="Class 7">
+        <span>Class 7</span>
+      </a>
+
+      <a href="class8.html" class="class-card">
+        <img src="img/class8.png" alt="Class 8">
+        <span>Class 8</span>
+      </a>
+
+      <a href="class9.html" class="class-card">
+        <img src="img/class9.png" alt="Class 9">
+        <span>Class 9</span>
+      </a>
+
+      <a href="class10.html" class="class-card">
+        <img src="img/class10.png" alt="Class 10">
+        <span>Class 10</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2025 Salman Unique Notes | All Rights Reserved
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
 </html>
