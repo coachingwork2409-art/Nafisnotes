@@ -1,5 +1,5 @@
 // js/banks_english.js
-// Class 10 — English Objective (100 MCQs)
+// Class 10 — English Objective (100 MCQs, NO numbering)
 
 window.questionBank = window.questionBank || {};
 window.questionBank.english = [
@@ -88,7 +88,7 @@ window.questionBank.english = [
 
 { q:"Which is a noun?", options:["River","Sleep","Happy","Write"], ans:0 },
 
-{ q:"Indirect speech: He said, 'I can do it.'", options:["He said he could do it.","He said he can do it.","He says he could do it.","He told he can do it."], ans:0 },
+{ q:"Indirect speech: He said, 'I can do it.'", options:["He said he could do it.","He said he can do it.","He says he could do it.","He told I can do it."], ans:0 },
 
 { q:"Choose correct article: ___ earth revolves around the sun.", options:["A","An","The","No article"], ans:2 },
 
@@ -106,7 +106,7 @@ window.questionBank.english = [
 
 { q:"Antonym of 'Happy' is:", options:["Joy","Glad","Sad","Nice"], ans:2 },
 
-{ q:"Past tense of 'see' is:", options:["saw","seen","see","seeing"], ans:1 },
+{ q:"Past tense of 'see' is:", options:["saw","seen","see","seeing"], ans:0 },
 
 { q:"'Barking dog seldom bites' uses:", options:["Simile","Proverb","Metaphor","Alliteration"], ans:1 },
 
@@ -176,6 +176,32 @@ window.questionBank.english = [
 
 { q:"Indirect speech: He said, 'I will come tomorrow.'", options:["He said he would come the next day.","He said he will come.","He says he will come.","He told I will come."], ans:0 },
 
-{ q:"Which is a verb?", options:["Jump","Green","Smart","Tall"], ans:0 }
+{ q:"Which is a verb?", options:["Jump","Green","Smart","Tall"], ans:0 },
+
+{ q:"Opposite of 'cold' is:", options:["cool","hot","warm","mild"], ans:1 },
+
+{ q:"Meaning of 'rapid':", options:["slow","fast","weak","lazy"], ans:1 },
+
+{ q:"Plural of 'leaf' is:", options:["leafs","leaves","leafes","leav"], ans:1 },
+
+{ q:"Antonym of 'bright':", options:["dark","light","shine","white"], ans:0 },
+
+{ q:"'The Diary of Anne Frank' is written by:", options:["Anne Frank","Nelson Mandela","Frost","Tagore"], ans:0 },
+
+{ q:"Meaning of 'purchase':", options:["sell","buy","give","take"], ans:1 },
+
+{ q:"Opposite of ‘early’:", options:["late","soon","slow","fast"], ans:0 },
+
+{ q:"Choose the verb: She reads a book.", options:["She","reads","a","book"], ans:1 },
+
+{ q:"Synonym of 'laugh':", options:["cry","smile","shout","fear"], ans:1 },
+
+{ q:"Correct article: He is ___ honest man.", options:["a","an","the","no article"], ans:1 },
+
+{ q:"'He plays cricket' — identify tense.", options:["Past","Future","Present Simple","Past Continuous"], ans:2 },
+
+{ q:"Meaning of 'ancient':", options:["very old","new","strong","silent"], ans:0 },
+
+{ q:"Antonym of 'success':", options:["failure","win","rise","growth"], ans:0 }
 
 ];
