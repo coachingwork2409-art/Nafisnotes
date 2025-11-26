@@ -8,14 +8,11 @@
 <link rel="stylesheet" href="css/style.css" />
 
 <style>
-
-/* ---------------- BASIC ---------------- */
+/* BASIC */
 .start-box { text-align:center; padding:40px 20px; }
 .start-box h1 { font-size:28px; font-weight:800; margin-bottom:10px; color:#dff6ff; }
 
-/* -------------------------------------------------
-   ⭐🔥 FIRE GLOW START-CARD (Final Updated Version)
---------------------------------------------------*/
+/* FIRE GLOW START CARD */
 #startCard {
   max-width: 450px;
   margin: 35px auto;
@@ -33,14 +30,13 @@
 
   transition: 0.35s ease;
 }
-
 #startCard:hover {
   background: rgba(0, 30, 60, 0.60);
   border: 1px solid rgba(0, 200, 255, 0.8);
 
   box-shadow:
     0 0 28px rgba(0,180,255,0.9),
-    0 0 50px rgba(0,180,255,0.6),
+    0 0 52px rgba(0,180,255,0.6),
     inset 0 0 22px rgba(0,200,255,0.45);
 
   transform: translateY(-5px) scale(1.03);
@@ -53,54 +49,43 @@
   color: #caf3ff;
 }
 
-/* Dropdowns */
+/* Dropdown */
 #startCard select {
   width: 100%;
   padding: 14px;
   margin-top: 6px;
   margin-bottom:12px;
-
   background: rgba(255,255,255,0.12);
   border-radius: 12px;
   color: #fff;
-
   border: 1px solid rgba(255,255,255,0.22);
-  font-size: 16px;
 }
 
-/* -------------------------------------------------
-   ⭐🔥 FIRE BUTTON 
---------------------------------------------------*/
+/* Button Fire Glow */
 #startCard .start-btn {
   width: 100%;
   margin-top: 18px;
   padding: 14px;
   font-size: 17px;
   border-radius: 12px;
-
   background: linear-gradient(90deg, #008CFF, #00DDFF);
   border: none;
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.7px;
-
   box-shadow: 0 0 18px rgba(0,200,255,0.55);
   cursor: pointer;
   transition: 0.3s ease;
 }
-
-/* FIRE glow hover */
 #startCard .start-btn:hover {
   background: linear-gradient(90deg, #00B7FF, #00F0FF);
-
   box-shadow:
     0 0 28px rgba(0,220,255,0.9),
     0 0 52px rgba(0,220,255,0.55);
-
   transform: scale(1.05);
 }
 
-/* ---------------- EXAM ---------------- */
+/* EXAM */
 .exam-box { display:none; }
 .question-card { background:rgba(255,255,255,0.06); padding:20px; border-radius:15px; margin-bottom:20px; }
 .question-text { font-size:20px; font-weight:800; color:#4db8ff; margin-bottom:12px; }
@@ -121,7 +106,11 @@
 
 <!-- HEADER -->
 <header class="topbar">
-  <div class="left"><img src="logo.png" class="site-logo" /></div>
+  <div class="left">
+    <a href="index.html">
+      <img src="logo.png" class="site-logo" />
+    </a>
+  </div>
   <div class="center"><div class="site-title">Salman Unique Notes</div></div>
   <div class="right"><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </header>
@@ -145,13 +134,12 @@
   </nav>
 </aside>
 
-<!-- ⭐ START SCREEN -->
+<!-- START SCREEN -->
 <main class="page-content" id="startScreen">
   <div class="start-box">
     <h1>Start Your Online Test</h1>
 
     <div id="startCard">
-
       <div class="select-box">
         <label>Subject चुनें:</label>
         <select id="subjectSelect">
@@ -161,7 +149,6 @@
       </div>
 
       <button class="start-btn" onclick="startExam()">Start Test</button>
-
     </div>
   </div>
 </main>
@@ -187,7 +174,6 @@
   <div id="printArea"></div>
 </main>
 
-<!-- QUESTION BANK -->
 <script src="js/banks_science.js"></script>
 
 <script>
