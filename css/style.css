@@ -268,6 +268,23 @@ body {
   z-index: 0;
 }
 
+.about-box {
+  padding: 16px 22px;
+  background: #111;
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 900;
+  font-size: 22px;     /* ⭐ थोड़ा छोटा ताकि एक लाइन में आ जाए */
+  text-align: center;
+  margin-bottom: 22px;
+  white-space: nowrap;  /* ⭐⭐ IMPORTANT → एक लाइन में मजबूर करेगा */
+  overflow: hidden;
+  text-overflow: ellipsis; /* फ़ालतू लम्बा हो तो ... करेगा */
+  position: relative;
+  z-index: 0;
+}
+
+/* 🔥 Animated Border */
 .about-box::before {
   content: "";
   position: absolute;
@@ -277,7 +294,6 @@ body {
   bottom: -2px;
   z-index: -1;
   border-radius: 16px;
-
   background: linear-gradient(
       120deg,
       #ff0000,
@@ -287,7 +303,6 @@ body {
       #ff0000
   );
   background-size: 300% 300%;
-
   animation: fireMove 4s linear infinite;
 }
 
