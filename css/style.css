@@ -118,19 +118,22 @@ opacity:1;
 visibility:visible;
 }
 
-.side-menu{
-position:fixed;
-right:-320px;
-top:0;
-width:300px;
-height:100%;
-background:#111 !important;
-box-shadow:-10px 0 30px rgba(0,0,0,0.45);
-padding:18px;
-transition:right .22s ease;
-z-index:1600;
-overflow: hidden;
-border-left:1px solid rgba(255,255,255,0.1);
+..side-menu{
+  position:fixed;
+  right:-340px;   /* ⭐ नया */
+  top:0;
+  width:300px;
+  height:100%;
+  background:#111 !important;
+  box-shadow:-10px 0 30px rgba(0,0,0,0.45);
+  padding:18px;
+  transition:right .22s ease;
+  z-index:1600;
+
+  overflow-x:hidden;   /* ⭐ नया */
+  overflow-y:auto;     /* ⭐ नया */
+
+  border-left:1px solid rgba(255,255,255,0.1);
 }
 
 .side-menu.open{ right:0; }
