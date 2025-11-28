@@ -248,4 +248,27 @@ body {
 @media(max-width:600px){
   .class-card img { width: 60px; height: 60px; }
 }
+/* Colour change karne का पूरा code… */
 .color { font-weight: 700; }
+
+/* …style.css का पूरा code… */
+
+.about-box {
+  padding: 12px 20px;
+  background: #111;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  background-image: 
+      linear-gradient(#111, #111),
+      linear-gradient(90deg, #00b0ff, #ffd700);
+  text-align: center;
+  font-weight: 900;
+  font-size: 24px;
+  color: #fff;
+
+  /* OPTIONAL */
+  /* box-shadow: 0 0 15px rgba(0,176,255,0.4); */
+  /* margin: 18px auto; */
+}
