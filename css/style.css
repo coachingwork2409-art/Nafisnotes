@@ -129,20 +129,22 @@ box-shadow:-10px 0 30px rgba(0,0,0,0.45);
 padding:18px;
 transition:right .22s ease;
 z-index:1600;
-overflow:auto;
+overflow: hidden;
 border-left:1px solid rgba(255,255,255,0.1);
 }
 
 .side-menu.open{ right:0; }
 
-.side-menu .close-side{
-background:transparent;
-border:none;
-color:#fff;
-font-size:22px;
-float:right;
-margin-bottom:12px;
-cursor:pointer;
+.side-menu .close-side {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3000;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
 }
 
 .side-menu nav{
