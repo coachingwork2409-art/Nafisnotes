@@ -285,3 +285,10 @@ body {
   background:rgba(0,150,255,0.25);
   color:#fff;
 }
+.topbar .left a {
+  pointer-events: auto !important;
+}
+
+.topbar .left img {
+  pointer-events: auto !important;
+}
