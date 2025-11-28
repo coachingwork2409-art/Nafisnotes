@@ -248,7 +248,4 @@ body {
 @media(max-width:600px){
   .class-card img { width: 60px; height: 60px; }
 }
-.highlight {
-  color: #00b0ff;      /* ⭐ यही से रंग बदलता है */
-  font-weight: 700;
-}
+.color { font-weight: 700; }
