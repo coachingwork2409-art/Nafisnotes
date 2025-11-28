@@ -142,7 +142,7 @@ body {
 
 .side-menu.open{ right:0; }
 
-.side-menu .close-side{
+.side-menu .close-side {
   background:transparent;
   border:none;
   color:#fff;
@@ -150,6 +150,10 @@ body {
   float:right;
   margin-bottom:12px;
   cursor:pointer;
+
+  /* FIX: cross button ऊपर आ जाएगा */
+  position: relative;
+  z-index: 2000;
 }
 
 .side-menu nav{
