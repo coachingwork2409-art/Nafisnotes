@@ -146,9 +146,6 @@ body {
   padding:18px;
   transition:right .22s ease;
   z-index:3000;
-
-  position:relative;  /* ⭐ FIXED */
-  
   overflow-x:hidden;   
   overflow-y:auto;     
 
