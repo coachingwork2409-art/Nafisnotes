@@ -311,3 +311,29 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+/* ========== CLASS BOX CLICK EFFECT ========== */
+
+.class-box {
+    text-align: center;
+    transition: 0.25s ease-in-out;
+}
+
+/* Hover Effect */
+.class-box:hover {
+    transform: translateY(-6px) scale(1.03);
+    background: rgba(0, 180, 255, 0.25);
+    border-color: rgba(0, 200, 255, 0.70);
+    box-shadow:
+      0 0 20px rgba(0,200,255,0.55),
+      0 0 40px rgba(0,200,255,0.25),
+      inset 0 0 22px rgba(0,200,255,0.18);
+}
+
+/* CLICK EFFECT (जब दबाएं तो हल्का ऊपर और Zoom) */
+.class-box:active {
+    transform: translateY(-10px) scale(1.07);
+    background: rgba(0, 200, 255, 0.35);
+    box-shadow:
+      0 0 30px rgba(0,200,255,0.75),
+      0 0 60px rgba(0,200,255,0.45);
+}
