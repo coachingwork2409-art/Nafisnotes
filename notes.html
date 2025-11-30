@@ -77,11 +77,11 @@
     <!-- ⭐ FINAL CLASS SELECTION BOXES ⭐ -->
     <div class="subject-list">
 
-      <a class="glow-card class-box" data-id="c8">8th Class ( कक्षा 8 विज्ञान )</a>
-      <a class="glow-card class-box" data-id="c9">9th Class ( कक्षा 9 विज्ञान )</a>
-      <a class="glow-card class-box" data-id="c10">10th Class ( कक्षा 10 विज्ञान )</a>
-      <a class="glow-card class-box" data-id="c11">11th Class ( कक्षा 11 विज्ञान )</a>
-      <a class="glow-card class-box" data-id="c12">12th Class ( कक्षा 12 विज्ञान )</a>
+      <a class="glow-card class-box" data-id="c8" href="class8.html">8th Class ( कक्षा 8 विज्ञान )</a>
+      <a class="glow-card class-box" data-id="c9" href="class9.html">9th Class ( कक्षा 9 विज्ञान )</a>
+      <a class="glow-card class-box" data-id="c10" href="class10.html">10th Class ( कक्षा 10 विज्ञान )</a>
+      <a class="glow-card class-box" data-id="c11" href="class11.html">11th Class ( कक्षा 11 विज्ञान )</a>
+      <a class="glow-card class-box" data-id="c12" href="class12.html">12th Class ( कक्षा 12 विज्ञान )</a>
 
     </div>
 
@@ -94,32 +94,39 @@
 
   <script src="js/script.js"></script>
 
-  <!-- ⭐ RIPPLE + ACTIVE JS ⭐ -->
+  <!-- ⭐ RIPPLE + ACTIVE JS (page-specific backup) ⭐ -->
   <script>
-    document.querySelectorAll(".class-box").forEach(box => {
+    (function(){
+      document.querySelectorAll(".class-box").forEach(box => {
 
-      box.addEventListener("click", function (e) {
+        box.addEventListener("click", function (e) {
 
-        document.querySelectorAll(".class-box").forEach(b => b.classList.remove("active"));
+          // Remove previous active box
+          document.querySelectorAll(".class-box").forEach(b => b.classList.remove("active"));
 
-        this.classList.add("active");
+          // Add active class on clicked box
+          this.classList.add("active");
 
-        const circle = document.createElement("span");
-        circle.classList.add("ripple");
+          // Create ripple element
+          const circle = document.createElement("span");
+          circle.classList.add("ripple");
 
-        let x = e.clientX - this.getBoundingClientRect().left;
-        let y = e.clientY - this.getBoundingClientRect().top;
+          // Ripple position
+          let x = e.clientX - this.getBoundingClientRect().left;
+          let y = e.clientY - this.getBoundingClientRect().top;
 
-        circle.style.left = `${x}px`;
-        circle.style.top = `${y}px`;
+          circle.style.left = `${x}px`;
+          circle.style.top = `${y}px`;
+          circle.style.width = circle.style.height = Math.max(this.offsetWidth, this.offsetHeight) / 4 + 'px';
 
-        this.appendChild(circle);
+          this.appendChild(circle);
 
-        setTimeout(() => circle.remove(), 600);
+          setTimeout(() => circle.remove(), 700);
+
+        });
 
       });
-
-    });
+    })();
   </script>
 
 </body>
