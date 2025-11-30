@@ -221,3 +221,36 @@ box.addEventListener('touchstart', () => {
         box.classList.remove('hover-touch');
     }, 1200);
 });
+// =========================
+// CLASS CLICK RIPPLE + ACTIVE
+// =========================
+
+document.querySelectorAll(".class-box").forEach(box => {
+
+  box.addEventListener("click", function (e) {
+
+    // Remove previous active box
+    document.querySelectorAll(".class-box").forEach(b => b.classList.remove("active"));
+
+    // Add active class on clicked box
+    this.classList.add("active");
+
+    // Create ripple element
+    const circle = document.createElement("span");
+    circle.classList.add("ripple");
+
+    // Ripple position
+    let x = e.clientX - this.getBoundingClientRect().left;
+    let y = e.clientY - this.getBoundingClientRect().top;
+
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
+
+    this.appendChild(circle);
+
+    // Remove ripple after animation
+    setTimeout(() => circle.remove(), 600);
+
+  });
+
+});
