@@ -2,27 +2,41 @@
 // script.js (Final Clean Version)
 // ===============================
 
+/* ====== Safe helpers ====== */
+function safeGet(id){
+  try { return document.getElementById(id); } catch(e){ return null; }
+}
+
+/* ===============================
+   EXAM MODULE (wrapped & guarded)
+   =============================== */
 (function(){
 
-  // DOM elements
-  const startCard = document.getElementById('startCard');
-  const examCard = document.getElementById('examCard');
-  const resultCard = document.getElementById('resultCard');
+  // Try to get exam related DOM elements; if missing, skip exam init
+  const startCard = safeGet('startCard');
+  const examCard = safeGet('examCard');
+  const resultCard = safeGet('resultCard');
 
-  const startBtn = document.getElementById('startBtn');
-  const subjectSelect = document.getElementById('subjectSelect');
+  const startBtn = safeGet('startBtn');
+  const subjectSelect = safeGet('subjectSelect');
 
-  const qText = document.getElementById('qText');
-  const optsBox = document.getElementById('optsBox');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const markBtn = document.getElementById('markBtn');
-  const progressText = document.getElementById('progressText');
+  const qText = safeGet('qText');
+  const optsBox = safeGet('optsBox');
+  const prevBtn = safeGet('prevBtn');
+  const nextBtn = safeGet('nextBtn');
+  const markBtn = safeGet('markBtn');
+  const progressText = safeGet('progressText');
 
-  const scoreLine = document.getElementById('scoreLine');
-  const resultList = document.getElementById('resultList');
-  const printBtn = document.getElementById('printBtn');
-  const retakeBtn = document.getElementById('retakeBtn');
+  const scoreLine = safeGet('scoreLine');
+  const resultList = safeGet('resultList');
+  const printBtn = safeGet('printBtn');
+  const retakeBtn = safeGet('retakeBtn');
+
+  // If essential elements for exam are not found, skip the exam initialization
+  if(!startBtn || !subjectSelect || !qText || !optsBox || !prevBtn || !nextBtn){
+    // console.log("Exam module: required elements not found, skipping exam initialization.");
+    return;
+  }
 
   // State
   let questions = [];
@@ -64,9 +78,9 @@
     userAnswers = {};
     marked = {};
 
-    startCard.style.display = "none";
-    resultCard.style.display = "none";
-    examCard.style.display = "block";
+    if(startCard) startCard.style.display = "none";
+    if(resultCard) resultCard.style.display = "none";
+    if(examCard) examCard.style.display = "block";
 
     loadQuestion();
   });
@@ -76,71 +90,81 @@
     const qObj = questions[index];
 
     // Progress text
-    progressText.textContent = `Question ${index+1} / ${totalQuestions}`;
+    if(progressText) progressText.textContent = `Question ${index+1} / ${totalQuestions}`;
+
+    if(!qObj) return;
 
     // Show ONLY main question (no duplicate numbering)
-    qText.innerHTML = `${qObj.q}`;
+    if(qText) qText.innerHTML = `${qObj.q}`;
 
     // Options
-    optsBox.innerHTML = "";
-    qObj.options.forEach((opt, i) => {
-      const div = document.createElement("div");
-      div.className = "opt";
-      div.innerHTML = `<div style="min-width:28px; font-weight:800;">${String.fromCharCode(65+i)})</div> ${opt}`;
+    if(optsBox) {
+      optsBox.innerHTML = "";
+      qObj.options.forEach((opt, i) => {
+        const div = document.createElement("div");
+        div.className = "opt";
+        div.innerHTML = `<div style="min-width:28px; font-weight:800;">${String.fromCharCode(65+i)})</div> ${opt}`;
 
-      if(userAnswers[index] === i) div.classList.add("selected");
+        if(userAnswers[index] === i) div.classList.add("selected");
 
-      div.addEventListener("click", () => {
-        userAnswers[index] = i;
+        div.addEventListener("click", () => {
+          userAnswers[index] = i;
 
-        Array.from(optsBox.children).forEach(c => c.classList.remove("selected"));
-        div.classList.add("selected");
+          Array.from(optsBox.children).forEach(c => c.classList.remove("selected"));
+          div.classList.add("selected");
+        });
+
+        optsBox.appendChild(div);
       });
+    }
 
-      optsBox.appendChild(div);
-    });
-
-    prevBtn.disabled = index === 0;
-    nextBtn.textContent = index === totalQuestions - 1 ? "Submit" : "Next";
-    markBtn.textContent = marked[index] ? "Unmark" : "Mark";
+    if(prevBtn) prevBtn.disabled = index === 0;
+    if(nextBtn) nextBtn.textContent = index === totalQuestions - 1 ? "Submit" : "Next";
+    if(markBtn) markBtn.textContent = marked[index] ? "Unmark" : "Mark";
   }
 
   // Previous Button
-  prevBtn.addEventListener("click", () => {
-    if(index > 0){
-      index--;
-      loadQuestion();
-      window.scrollTo({top:0, behavior:"smooth"});
-    }
-  });
+  if(prevBtn){
+    prevBtn.addEventListener("click", () => {
+      if(index > 0){
+        index--;
+        loadQuestion();
+        window.scrollTo({top:0, behavior:"smooth"});
+      }
+    });
+  }
 
   // Next or Submit Button
-  nextBtn.addEventListener("click", () => {
+  if(nextBtn){
+    nextBtn.addEventListener("click", () => {
 
-    if(index === totalQuestions - 1){
-      if(!confirm("क्या आप टेस्ट submit करना चाहते हैं?")) return;
-      evaluate();
-      return;
-    }
+      if(index === totalQuestions - 1){
+        if(!confirm("क्या आप टेस्ट submit करना चाहते हैं?")) return;
+        evaluate();
+        return;
+      }
 
-    index++;
-    loadQuestion();
-    window.scrollTo({top:0, behavior:"smooth"});
-  });
+      index++;
+      loadQuestion();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
 
   // Mark Button
-  markBtn.addEventListener("click", () => {
-    marked[index] = !marked[index];
-    markBtn.textContent = marked[index] ? "Unmark" : "Mark";
-  });
+  if(markBtn){
+    markBtn.addEventListener("click", () => {
+      marked[index] = !marked[index];
+      markBtn.textContent = marked[index] ? "Unmark" : "Mark";
+    });
+  }
 
   // Evaluate Result
   function evaluate(){
-    examCard.style.display = "none";
-    resultCard.style.display = "block";
+    if(examCard) examCard.style.display = "none";
+    if(resultCard) resultCard.style.display = "block";
 
     let score = 0;
-    resultList.innerHTML = "";
+    if(resultList) resultList.innerHTML = "";
 
     questions.forEach((q, i) => {
       const user = userAnswers[i];
@@ -167,28 +191,30 @@
         </div>
       `;
 
-      resultList.appendChild(item);
+      if(resultList) resultList.appendChild(item);
     });
 
-    scoreLine.textContent = `Score: ${score} / ${totalQuestions} • Attempted: ${Object.keys(userAnswers).length}`;
+    if(scoreLine) scoreLine.textContent = `Score: ${score} / ${totalQuestions} • Attempted: ${Object.keys(userAnswers).length}`;
   }
 
   // Print Result
-  printBtn.addEventListener("click", () => window.print());
+  if(printBtn) printBtn.addEventListener("click", () => window.print());
 
   // Retake
-  retakeBtn.addEventListener("click", () => {
-    resultCard.style.display = "none";
-    examCard.style.display = "none";
-    startCard.style.display = "block";
-  });
+  if(retakeBtn){
+    retakeBtn.addEventListener("click", () => {
+      if(resultCard) resultCard.style.display = "none";
+      if(examCard) examCard.style.display = "none";
+      if(startCard) startCard.style.display = "block";
+    });
+  }
 
   // Keyboard Navigation
   document.addEventListener("keydown", e => {
-    if(examCard.style.display === "block"){
-      if(e.key === "Enter") nextBtn.click();
-      if(e.key === "ArrowRight") nextBtn.click();
-      if(e.key === "ArrowLeft") prevBtn.click();
+    if(examCard && examCard.style.display === "block"){
+      if(e.key === "Enter") nextBtn && nextBtn.click();
+      if(e.key === "ArrowRight") nextBtn && nextBtn.click();
+      if(e.key === "ArrowLeft") prevBtn && prevBtn.click();
     }
   });
 
@@ -203,54 +229,76 @@
 function openMenu(){
   const menu = document.getElementById("sideMenu");
   const overlay = document.getElementById("overlay");
-  menu.classList.add("open");
-  overlay.classList.add("show");
+  if(menu) menu.classList.add("open");
+  if(overlay) overlay.classList.add("show");
 }
 
 function closeMenu(){
   const menu = document.getElementById("sideMenu");
   const overlay = document.getElementById("overlay");
-  menu.classList.remove("open");
-  overlay.classList.remove("show");
+  if(menu) menu.classList.remove("open");
+  if(overlay) overlay.classList.remove("show");
 }
-const box = document.getElementById('startCard');
 
-box.addEventListener('touchstart', () => {
-    box.classList.add('hover-touch');
-    setTimeout(() => {
-        box.classList.remove('hover-touch');
-    }, 1200);
-});
+/* Touch helper for startCard only if exists */
+(function(){
+  const box = document.getElementById('startCard');
+  if(box){
+    box.addEventListener('touchstart', () => {
+      box.classList.add('hover-touch');
+      setTimeout(() => {
+          box.classList.remove('hover-touch');
+      }, 1200);
+    });
+  }
+})();
+
+
 // =========================
 // CLASS CLICK RIPPLE + ACTIVE
 // =========================
 
-document.querySelectorAll(".class-box").forEach(box => {
+(function(){
+  const boxes = document.querySelectorAll(".class-box");
+  if(!boxes || boxes.length === 0) return;
 
-  box.addEventListener("click", function (e) {
+  boxes.forEach(box => {
 
-    // Remove previous active box
-    document.querySelectorAll(".class-box").forEach(b => b.classList.remove("active"));
+    box.addEventListener("click", function (e) {
 
-    // Add active class on clicked box
-    this.classList.add("active");
+      // Remove previous active box
+      document.querySelectorAll(".class-box").forEach(b => b.classList.remove("active"));
 
-    // Create ripple element
-    const circle = document.createElement("span");
-    circle.classList.add("ripple");
+      // Add active class on clicked box
+      this.classList.add("active");
 
-    // Ripple position
-    let x = e.clientX - this.getBoundingClientRect().left;
-    let y = e.clientY - this.getBoundingClientRect().top;
+      // Create ripple element
+      const circle = document.createElement("span");
+      circle.classList.add("ripple");
 
-    circle.style.left = `${x}px`;
-    circle.style.top = `${y}px`;
+      // Ripple position (support both mouse and touch)
+      const rect = this.getBoundingClientRect();
+      const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+      const clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
 
-    this.appendChild(circle);
+      let x = clientX - rect.left;
+      let y = clientY - rect.top;
 
-    // Remove ripple after animation
-    setTimeout(() => circle.remove(), 600);
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+
+      // size ripple relative to element
+      const size = Math.max(rect.width, rect.height) * 0.18;
+      circle.style.width = circle.style.height = `${size}px`;
+
+      this.appendChild(circle);
+
+      // Remove ripple after animation
+      setTimeout(() => {
+        circle.remove();
+      }, 700);
+
+    });
 
   });
-
-});
+})();
