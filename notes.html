@@ -1,87 +1,97 @@
-<!-- MAIN CONTAINER -->
-<div style="max-width: 900px; margin: auto; padding: 15px;">
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes | Salman Unique Notes</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Notice Board -->
+  <marquee style="background-color: yellow; color: black; font-weight: bold; font-size: 20px; padding: 10px;">
+    New Batch Class 10th ke liye shuru ho gaya hai! Jaldi join karein.
+  </marquee>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <a href="/Nafisnotes/">
+        <img src="logo.png" alt="Logo" class="site-logo" />
+      </a>
+    </div>
+
+    <div class="center">
+      <div class="site-title">Salman Unique Notes</div>
+    </div>
+
+    <div class="right">
+      <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    </div>
+  </header>
+
+  <!-- OVERLAY + SIDE MENU -->
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <button class="close-side" onclick="closeMenu()">✕</button>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="class6.html">Class 6</a>
+      <a href="class7.html">Class 7</a>
+      <a href="class8.html">Class 8</a>
+      <a href="class9.html">Class 9</a>
+      <a href="class10.html">Class 10</a>
+      <a href="notes.html">Notes</a>
+      <a href="test.html">Online Test</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- ⭐ MAIN CONTENT: SUBJECTIVE QUESTIONS PAGE ⭐ -->
+  <section class="page-content">
 
     <!-- TOP IMAGE BANNER -->
     <div style="text-align:center;">
-        <img src="https://i.ibb.co/wyxSNBc/banner-sample.jpg"
-             alt="Science Banner"
-             style="width:100%; border-radius:8px;">
+      <img src="https://i.ibb.co/wyxSNBc/banner-sample.jpg"
+        alt="Science Banner"
+        style="width:100%; border-radius:14px;">
     </div>
 
-    <!-- RED HEADING SECTION -->
+    <!-- RED HEADING -->
     <div style="
         background:#e53935;
         color:white;
         text-align:center;
         padding:18px;
         margin-top:25px;
-        border-radius:6px;
+        border-radius:10px;
         font-size:24px;
-        font-weight:bold;
-        line-height:34px;
-    ">
-        All Class Subjective <br>
-        Questions with Answer
+        font-weight:900;
+        line-height:34px;">
+      All Class Subjective <br> Questions with Answer
     </div>
 
-    <!-- CLASS LIST LINKS -->
-    <div style="margin-top:20px;">
+    <!-- CLASS LIST LINKS (Glow Cards Style) -->
+    <div class="cards" style="margin-top:30px;">
 
-        <a href="#" style="
-            display:block;
-            padding:15px 10px;
-            font-size:20px;
-            border-bottom:1px solid #d0d0d0;
-            color:#0d47a1;
-            text-decoration:none;
-        ">
-            8th Class ( कक्षा 8 विज्ञान )
-        </a>
-
-        <a href="#" style="
-            display:block;
-            padding:15px 10px;
-            font-size:20px;
-            border-bottom:1px solid #d0d0d0;
-            color:#0d47a1;
-            text-decoration:none;
-        ">
-            9th Class ( कक्षा 9 विज्ञान )
-        </a>
-
-        <a href="#" style="
-            display:block;
-            padding:15px 10px;
-            font-size:20px;
-            border-bottom:1px solid #d0d0d0;
-            color:#0d47a1;
-            text-decoration:none;
-        ">
-            10th Class ( कक्षा 10 विज्ञान )
-        </a>
-
-        <a href="#" style="
-            display:block;
-            padding:15px 10px;
-            font-size:20px;
-            border-bottom:1px solid #d0d0d0;
-            color:#0d47a1;
-            text-decoration:none;
-        ">
-            11th Class ( कक्षा 11 विज्ञान )
-        </a>
-
-        <a href="#" style="
-            display:block;
-            padding:15px 10px;
-            font-size:20px;
-            border-bottom:1px solid #d0d0d0;
-            color:#0d47a1;
-            text-decoration:none;
-        ">
-            12th Class ( कक्षा 12 विज्ञान )
-        </a>
+      <a href="#" class="glow-card">8th Class ( कक्षा 8 विज्ञान )</a>
+      <a href="#" class="glow-card">9th Class ( कक्षा 9 विज्ञान )</a>
+      <a href="#" class="glow-card">10th Class ( कक्षा 10 विज्ञान )</a>
+      <a href="#" class="glow-card">11th Class ( कक्षा 11 विज्ञान )</a>
+      <a href="#" class="glow-card">12th Class ( कक्षा 12 विज्ञान )</a>
 
     </div>
 
-</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2025 Salman Unique Notes | All Rights Reserved
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
