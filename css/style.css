@@ -80,7 +80,7 @@ body {
 .header-section h2 { font-size:26px; font-weight:800; margin-bottom:6px; }
 .header-section p { opacity:0.95; }
 
-/* GLOW GLASS CARDS */
+/* GLOW GLASS CARDS (keep for other pages) */
 .cards{ display:flex; flex-direction:column; gap:14px; align-items:center; }
 .glow-card{
   width:100%; max-width:760px;
@@ -93,8 +93,8 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 12px rgba(0,150,255,0.08);
   transition: transform .18s ease, box-shadow .18s ease;
 }
+/* remove transform here to prevent transform conflicts with .class-box */
 .glow-card:hover{
-  transform: translateY(-6px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.34), 0 0 28px rgba(0,160,255,0.28);
 }
 
@@ -311,32 +311,60 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-/* ========== CLASS BOX CLICK EFFECT ========== */
+
+/* ============================
+   SUBJECT LIST & CLASS BOXES
+   ============================ */
+
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 760px;
+  margin: 30px auto;
+  padding: 0 12px;
+}
 
 .class-box {
-    text-align: center;
-    transition: 0.25s ease-in-out;
+  position: relative;
+  overflow: hidden;   /* important for ripple */
+  text-align: center;
+  transition: transform 0.28s ease-in-out, box-shadow 0.28s ease-in-out, background 0.28s ease-in-out;
+  width: 100%;
+  max-width: 760px;
+  padding: 18px 14px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.4),
+    inset 0 0 12px rgba(0,160,255,0.06);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover Effect */
 .class-box:hover {
     transform: translateY(-6px) scale(1.03);
-    background: rgba(0, 180, 255, 0.25);
-    border-color: rgba(0, 200, 255, 0.70);
+    background: rgba(0, 180, 255, 0.12);
+    border-color: rgba(0, 200, 255, 0.45);
     box-shadow:
-      0 0 20px rgba(0,200,255,0.55),
-      0 0 40px rgba(0,200,255,0.25),
-      inset 0 0 22px rgba(0,200,255,0.18);
+      0 0 20px rgba(0,200,255,0.30),
+      0 0 40px rgba(0,200,255,0.18),
+      inset 0 0 18px rgba(0,200,255,0.12);
 }
 
-/* CLICK EFFECT (जब दबाएं तो हल्का ऊपर और Zoom) */
+/* CLICK EFFECT (when physically clicking) */
 .class-box:active {
-    transform: translateY(-10px) scale(1.07);
-    background: rgba(0, 200, 255, 0.35);
-    box-shadow:
-      0 0 30px rgba(0,200,255,0.75),
-      0 0 60px rgba(0,200,255,0.45);
+    transform: translateY(-10px) scale(1.06);
 }
+
+/* ACTIVE SELECTED EFFECT (after click) */
 .class-box.active {
     transform: translateY(-10px) scale(1.05);
     background: rgba(0, 200, 255, 0.40) !important;
@@ -347,18 +375,28 @@ body {
         inset 0 0 30px rgba(0,255,255,0.35) !important;
 }
 
+/* ripple */
 .class-box .ripple {
     position: absolute;
-    background: rgba(0, 200, 255, 0.6);
-    border-radius: 50%;
+    width: 12px;
+    height: 12px;
     transform: scale(0);
+    border-radius: 50%;
+    background: rgba(0, 200, 255, 0.36);
     animation: rippleAnim 0.6s linear;
     pointer-events: none;
+    filter: blur(0.2px);
 }
 
 @keyframes rippleAnim {
     to {
-        transform: scale(4);
+        transform: scale(16);
         opacity: 0;
     }
+}
+
+/* small screen tweaks */
+@media (max-width:480px){
+  .class-box { font-size:18px; padding:16px; }
+  .subject-list { gap:14px; margin:20px auto; }
 }
